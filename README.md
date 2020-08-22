@@ -22,6 +22,8 @@
 
 ### TODO.
 
+- [ ] Google Auth.
+- [ ] Two factor authentication
 - [ ] Journals
 - [ ] Ledgers
 - [ ] Cashbooks
