@@ -6,23 +6,28 @@
 
 > This software also aims to minimise the complexity of book keeping by providing automated generation of financial statements like business journals, ledgers, Trial balance, Income statement, cashbooks, and balance sheet basing on data of the company provided through our easy to use user interface.
 
-### Technology stack
+## Technology stack
 
 - Typescript
-- Reactjs, Redux (Frontend).
+- Reactjs, Redux, saas (Frontend).
 - Nodejs, express, (Backend)
 - MongoDb (database)
 
-### Software Features.
+## Security.
 
-#### TODO.
+1. Google Auth.
+2. Two factor authentication
 
-- [x] Journals
-- [x] Ledgers
-- [x] Cashbooks
-- [x] Trial balance
-- [x] Income statement (Statement of financial position)
-- [x] Balance sheet
-- [x] Payroll
-- [x] Printable reports
+## Software Features.
+
+### TODO.
+
+- [ ] Journals
+- [ ] Ledgers
+- [ ] Cashbooks
+- [ ] Trial balance
+- [ ] Income statement (Statement of financial position)
+- [ ] Balance sheet
+- [ ] Payroll
+- [ ] Printable reports
 - [ ] Stock management
