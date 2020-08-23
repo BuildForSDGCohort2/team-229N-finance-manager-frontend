@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import fl from '../../asset/finance.svg';
-import fd from '../../asset/financial_data.svg';
+// import fd from '../../asset/financial_data.svg';
 import report from '../../asset/report.svg';
 import Header from './Header';
 const Home: FC = () => {
