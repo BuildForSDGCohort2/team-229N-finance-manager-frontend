@@ -1,6 +1,6 @@
 # Finance manager
 
-![Finace manager](asset/finance.svg)
+![Finace manager](src/asset/finance.svg)
 
 > Finance manager is the online accounting software for small and medium enterprises. This softwares aims to bridge knowledge gap of young africans with no accounting background.
 
