@@ -3,6 +3,7 @@ import fl from '../../asset/finance.svg';
 // import fd from '../../asset/financial_data.svg';
 import report from '../../asset/report.svg';
 import Header from './Header';
+import { Link } from 'react-router-dom';
 const Home: FC = () => {
 	return (
 		<>
@@ -71,19 +72,19 @@ const Home: FC = () => {
 			<footer className='footer'>
 				<ul>
 					<li>
-						<a href='#'>Faq</a>
+						<Link to='/'>Faq</Link>
 					</li>
 					<li>
-						<a href='#'>Terms of Use</a>
+						<Link to='/'>Terms of Use</Link>
 					</li>
 					<li>
-						<a href='#'>Privacy Notice</a>
+						<Link to='/'>Privacy Notice</Link>
 					</li>
 					<li>
-						<a href='#'>Contact Us</a>
+						<Link to='/'>Contact Us</Link>
 					</li>
 					<li>
-						<a href='#'>About Us</a>
+						<Link to='/'>About Us</Link>
 					</li>
 				</ul>
 			</footer>
