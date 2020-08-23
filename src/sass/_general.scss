@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+	color: $texColor;
+}
+
+ul {
+	list-style: none;
+}
+
+.scroller::-webkit-scrollbar {
+	width: 5px;
+}
+
+.scroller::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+	background-color: orange;
+	border-radius: 10px;
+}
