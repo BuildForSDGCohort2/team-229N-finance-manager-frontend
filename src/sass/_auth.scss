@@ -1,22 +1,19 @@
-body {
-	font-family: 'Montserrat', sans-serif;
-	background: $primaryColor;
-	color: $texColor;
-	font-size: 18px;
-	line-height: 1.6;
-}
-
 h1,
 h2,
 h3,
 p {
 	margin-bottom: 10px;
 }
-
-.btn {
+p {
+	font-size: 1.6rem;
+}
+h1 {
+	font-size: 40px;
+}
+.button {
 	display: inline-block;
 	border: 0;
-	background: $secondaryColor;
+	// background: $secondaryColor;
 	color: $texColor;
 	border-radius: 20px;
 	padding: 8px 30px;
@@ -24,11 +21,31 @@ p {
 	font-weight: bold;
 	font-size: 16px;
 	margin-top: 10px;
+	transition: all 0.5s linear;
+	cursor: pointer;
 	&:hover {
-		transform: scale(0.98);
+		transform: scale(1.18);
 	}
 }
-
+.login_bg {
+	// background-color: $primaryColor;
+	color: $texColor;
+	overflow-x: hidden;
+	background-attachment: fixed;
+	background: url('../asset/world.png') no-repeat center $primaryColor;
+	// background-repeat: no-repeat;
+	// background-position: 50% 50%;
+}
+.field {
+	position: relative !important;
+	margin-top: 0 !important;
+}
+.input_border:focus ~ span {
+	width: calc(100% - 3rem);
+}
+.input_border {
+	border-bottom: 1px solid #ccc !important;
+}
 .primary-text {
 	color: $primaryColor;
 }
@@ -36,147 +53,12 @@ p {
 .secondary-text {
 	color: $secondaryColor;
 }
-
-// .section {
-// 	position: relative;
-// 	padding: 0 20px;
-// }
-
 /* Section Top */
-.section {
+.home_title {
+	font-family: 'BlackOpsOne-Regular';
+	font-size: 32px;
+	text-transform: uppercase;
+}
+.fullPage {
 	height: 100vh;
-	display: flex;
-	position: relative;
-	padding: 0 20px;
-	div {
-		.bg {
-			background: rgba(255, 255, 255, 0.1);
-			border-radius: 10px;
-		}
-
-		// border: 1px solid red;
-		&:nth-child(2) {
-			text-align: center;
-			padding: 10px;
-			p {
-				width: 500px;
-				line-height: 2;
-				// font-size: 20px;
-			}
-		}
-	}
-	// background: url('../asset/finance.svg') no-repeat center center/cover;
-	img {
-		width: 100%;
-	}
-	h1 {
-		font-size: 50px;
-	}
-}
-.sec2 {
-	// text-align: center;
-	padding: 20px;
-	p {
-		vertical-align: middle;
-		max-width: 500px;
-		line-height: 2;
-	}
-}
-/* Section Stream */
-.section-stream {
-	height: 100vh;
-	// background: url('https://i.ibb.co/bsX6RV0/bg2.png') no-repeat center
-	// 	center/cover;
-	h2 {
-		font-size: 35px;
-	}
-	.play {
-		width: 27%;
-		position: absolute;
-		top: 100px;
-		left: 50px;
-	}
-	.content {
-		position: absolute;
-		width: 50%;
-		top: 130px;
-		right: 70px;
-		div {
-			background: rgba(255, 255, 255, 0.1);
-			padding: 20px;
-			margin-bottom: 20px;
-			border-radius: 10px;
-		}
-	}
-}
-
-/* Section Grid */
-.section-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 30px;
-	text-align: center;
-	div {
-		background: rgba(255, 255, 255, 0.1);
-		padding: 20px;
-		margin-bottom: 20px;
-		border-radius: 10px;
-	}
-	p {
-		color: $texColor;
-	}
-	.dot {
-		font-size: 40px;
-		padding-left: 2px;
-	}
-}
-/* Footer */
-.footer {
-	border-top: $texColor 1px solid;
-	padding: 30px;
-	margin-top: 20px;
-	ul {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		text-align: center;
-	}
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-	.section-top .content,
-	.section-stream .play,
-	.section-stream .content {
-		position: static;
-		width: 100%;
-	}
-
-	.section-top {
-		min-height: 200px;
-		padding-top: 20px;
-		.content {
-			text-align: center;
-			h1 {
-				font-size: 45px;
-			}
-		}
-	}
-
-	.section-stream {
-		min-height: 400px;
-		.play {
-			width: 50%;
-			display: block;
-			margin: 30px auto;
-		}
-	}
-	.section-grid {
-		display: block;
-		margin-top: 0;
-	}
-
-	.footer ul {
-		display: block;
-	}
 }
