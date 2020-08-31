@@ -2,63 +2,70 @@ h1,
 h2,
 h3,
 p {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
+
 p {
-	font-size: 1.6rem;
+  font-size: 1.6rem;
 }
+
 h1 {
-	font-size: 40px;
+  font-size: 40px;
 }
+
 .button {
-	display: inline-block;
-	border: 0;
-	// background: $secondaryColor;
-	color: $texColor;
-	border-radius: 20px;
-	padding: 8px 30px;
-	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 16px;
-	margin-top: 10px;
-	transition: all 0.5s linear;
-	cursor: pointer;
-	&:hover {
-		transform: scale(1.18);
-	}
+  display: inline-block;
+  border: 0;
+
+  color: $texColor;
+  border-radius: 20px;
+  padding: 8px 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: all 0.5s linear;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.18);
+  }
 }
+
 .login_bg {
-	// background-color: $primaryColor;
-	color: $texColor;
-	overflow-x: hidden;
-	background-attachment: fixed;
-	background: url('../asset/world.png') no-repeat center $primaryColor;
-	// background-repeat: no-repeat;
-	// background-position: 50% 50%;
+  color: $texColor;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  background: url('../asset/world.png') no-repeat center $primaryColor;
 }
+
 .field {
-	position: relative !important;
-	margin-top: 0 !important;
+  position: relative !important;
+  margin-top: 0 !important;
 }
+
 .input_border:focus ~ span {
-	width: calc(100% - 3rem);
+  width: calc(100% - 3rem);
 }
+
 .input_border {
-	border-bottom: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
 }
+
 .primary-text {
-	color: $primaryColor;
+  color: $primaryColor;
 }
 
 .secondary-text {
-	color: $secondaryColor;
+  color: $secondaryColor;
 }
-/* Section Top */
+
 .home_title {
-	font-family: 'BlackOpsOne-Regular';
-	font-size: 32px;
-	text-transform: uppercase;
+  font-family: 'BlackOpsOne-Regular';
+  font-size: 32px;
+  text-transform: uppercase;
 }
+
 .fullPage {
-	height: 100vh;
+  height: 100vh;
 }
