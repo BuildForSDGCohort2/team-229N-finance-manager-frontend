@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { RightComp } from '../comps';
+import M from 'materialize-css';
 
 interface Prop {
   nextStep: () => void;
@@ -21,6 +22,16 @@ const Step3: FC<Prop> = ({
   setTel,
   tel,
 }) => {
+  const next = () => {
+    if (!email) {
+      M.toast({
+        html: 'Company email is required',
+        classes: 'rounded red',
+      });
+      return;
+    }
+    nextStep();
+  };
   return (
     <RightComp className="hover_me">
       <div className="center">
@@ -32,6 +43,7 @@ const Step3: FC<Prop> = ({
             <input
               id="number"
               type="tel"
+              autoFocus={true}
               value={tel}
               onChange={(e) => setTel(e.target.value)}
               className="input_border"
@@ -73,7 +85,7 @@ const Step3: FC<Prop> = ({
         <b>Back</b>
         <i className="material-icons left">navigate_before</i>
       </button>
-      <button onClick={nextStep} className="btn white black-text shadow right">
+      <button onClick={next} className="btn white black-text shadow right">
         <b>next</b>
         <i className="material-icons right">navigate_next</i>
       </button>

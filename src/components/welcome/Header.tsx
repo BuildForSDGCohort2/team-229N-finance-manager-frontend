@@ -38,8 +38,9 @@ const Links = styled.ul`
   li {
     a {
       cursor: pointer;
+      color: #fff;
       &:hover {
-        color: orange;
+        /* color: orange; */
         text-decoration: underline;
       }
     }

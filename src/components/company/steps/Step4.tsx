@@ -34,6 +34,7 @@ const Step4: FC<Prop> = ({
             <input
               id="fb"
               value={fb}
+              autoFocus={true}
               onChange={(e) => setFb(e.target.value)}
               type="text"
               className="input_border"

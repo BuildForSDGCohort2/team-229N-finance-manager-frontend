@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import logo from '../../asset/logo.png';
+// import logo from '../../asset/logo.png';
 const Container = styled(motion.div)`
   width: 100%;
   height: 70px;
@@ -27,12 +27,31 @@ const H1 = styled.h1`
   margin-left: 1.5rem;
   align-self: center;
 `;
-const MainHeader = () => {
+const Logo = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: orange;
+  border-radius: 50%;
+  font-size: 23px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+`;
+interface Props {
+  name: string;
+}
+
+const MainHeader: FC<Props> = ({ name }) => {
   return (
     <>
       <Container>
-        <img src={logo} width="50" height="50" alt="Logo" />
-        <H1 className="textShadow">Finance manager</H1>
+        <Logo>{name.substr(0, 2)}</Logo>
+        <H1 className="textShadow">{name}</H1>
       </Container>
       <br /> <br />
       <br />

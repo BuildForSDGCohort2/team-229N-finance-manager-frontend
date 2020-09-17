@@ -13,34 +13,36 @@ import Journal from './routes/Journal';
 import IncomeStatement from './routes/IncomeStatement';
 import BalanceSheet from './routes/BalanceSheet';
 import { useTypedSelector } from '../../redux/stateTypes';
-const Main: FC = () => {
+// import { CompanyProps } from './interface';
+
+const Main: FC<{ props: any }> = ({ props }) => {
   // const [route, setRoute] = useState<routeTypes>('cash');
   const { route } = useTypedSelector((state) => state.routes);
   switch (route) {
     case 'dasboard':
       return <Dashboard />;
     case 'about':
-      return <About />;
+      return <About props={props} />;
     case 'cash':
-      return <Cash />;
+      return <Cash props={props} />;
     case 'bank':
-      return <Bank />;
+      return <Bank props={props} />;
     case 'capital':
-      return <Capital />;
+      return <Capital props={props} />;
     case 'fixedAssets':
-      return <FixedAssets />;
+      return <FixedAssets props={props} />;
     case 'cashBook':
-      return <Cashbook />;
+      return <Cashbook props={props} />;
     case 'trialBalance':
-      return <Trialbalance />;
+      return <Trialbalance props={props} />;
     case 'ledger':
-      return <Ledger />;
+      return <Ledger props={props} />;
     case 'journal':
-      return <Journal />;
+      return <Journal props={props} />;
     case 'incomeStatement':
-      return <IncomeStatement />;
+      return <IncomeStatement props={props} />;
     case 'balanceSheet':
-      return <BalanceSheet />;
+      return <BalanceSheet props={props} />;
     default:
       return <Dashboard />;
   }

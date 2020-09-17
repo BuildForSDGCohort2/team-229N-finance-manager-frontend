@@ -86,7 +86,7 @@ body {
   font-feature-settings: 'liga';
 }
 .activeScroll {
-  color: orange;
+  color: orange !important;
   text-decoration: underline;
 }
 .hover_me {
@@ -138,4 +138,10 @@ body {
 .underline {
   border-bottom-style: double;
   border-top: 0.4px solid #000;
+}
+
+.border_table td,
+th {
+  // padding: 0;
+  border: 1px solid #ddd !important;
 }

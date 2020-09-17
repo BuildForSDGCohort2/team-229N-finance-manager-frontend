@@ -1,6 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import M from 'materialize-css';
+import { useThunkDispatch } from '../../redux/stateTypes';
+import { actionTypes } from '../../redux/actions';
 const Fab = () => {
+  const dispatch = useThunkDispatch();
   useLayoutEffect(() => {
     M.AutoInit();
   }, []);
@@ -11,8 +14,14 @@ const Fab = () => {
       </a>
       <ul>
         <li>
-          <a className="btn-floating red">
-            <i className="material-icons">insert_chart</i>
+          <a
+            className="btn-floating red"
+            onClick={() =>
+              dispatch({
+                type: actionTypes.USER_LOGOUT,
+              })
+            }>
+            <i className="material-icons">power_settings_new</i>
           </a>
         </li>
         <li>

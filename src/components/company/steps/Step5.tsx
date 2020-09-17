@@ -1,28 +1,177 @@
-import React, { FC } from 'react';
-import { RightComp } from '../comps';
+import React, { FC, useState } from 'react';
+import { RightComp, Collapsible } from '../comps';
+import { useTypedSelector, useThunkDispatch } from '../../../redux/stateTypes';
+import axios from 'axios';
+import { CompanyResponse } from '../interface';
+import { actionTypes } from '../../../redux/actions';
 
 interface Prop {
-  nextStep: () => void;
   prevStep: () => void;
-  logo: string;
-  setLogo: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
+  desc: string;
+  account: string;
+  tel: string;
+  email: string;
+  location: string;
+  fb: string;
+  twt: string;
+  yt: string;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  // logo: string;
 }
-const Step5: FC<Prop> = ({ prevStep, nextStep, logo, setLogo }) => {
+const Step5: FC<Prop> = ({
+  prevStep,
+  account,
+  desc,
+  email,
+  fb,
+  location,
+  name,
+  tel,
+  twt,
+  yt,
+  setStep,
+}) => {
+  const dispatch = useThunkDispatch();
+  const { token } = useTypedSelector((state) => state.auth);
+  axios.defaults.headers.common['Authorization'] = token;
+  const [loading, setLoading] = useState(false);
+  const submit = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.post('/company/create', {
+        name,
+        email,
+        location,
+        desc,
+        fb,
+        yt,
+        twt,
+        tel,
+        bank: account,
+      });
+      const { success, error, data } = res.data as CompanyResponse;
+      setLoading(false);
+      if (!success) {
+        M.toast({ html: error, classes: 'rounded red' });
+      } else {
+        dispatch({
+          type: actionTypes.CREATE_COMPANY,
+          payload: { data },
+        });
+        setStep(1);
+        M.toast({ html: 'Success', classes: 'rounded green' });
+        // M.toast({ html: 'Account created', classes: 'rounded green' });
+      }
+    } catch (error) {
+      M.toast({ html: 'Network error', classes: 'rounded red' });
+      setLoading(false);
+    }
+  };
   return (
     <RightComp className="hover_me">
-      <div className="center">
-        {/* <h5>We need to know more about the company you want to create.</h5> */}
-        <p>Your company's logo</p>
-        <h1>LOGO HERE </h1>
-      </div>
+      <p className="center">Review and submit</p>
+      <ul className="collection">
+        <li className="collection-item collection_item_overide">
+          <Collapsible>
+            <div>
+              <i className="fas fa-2x fa-address-card teal-text"></i>
+            </div>
+            <div>{name}</div>
+          </Collapsible>
+        </li>
+        <li className="collection-item collection_item_overide">
+          <Collapsible>
+            <div>
+              <i className="material-icons teal-text">info_outline</i>
+            </div>
+            <div>{desc}</div>
+          </Collapsible>
+        </li>
+        {account && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="material-icons teal-text">account_balance</i>
+              </div>
+              <div>{account}</div>
+            </Collapsible>
+          </li>
+        )}
+        {tel && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="material-icons teal-text">phone</i>
+              </div>
+              <div>{tel}</div>
+            </Collapsible>
+          </li>
+        )}
+        <li className="collection-item collection_item_overide">
+          <Collapsible>
+            <div>
+              <i className="material-icons teal-text">email</i>
+            </div>
+            <div>{email}</div>
+          </Collapsible>
+        </li>
+        {location && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="material-icons teal-text">location_on</i>
+              </div>
+              <div>{location}</div>
+            </Collapsible>
+          </li>
+        )}
+        {fb && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="fab fa-2x fa-facebook teal-text"></i>
+              </div>
+              <div>{fb}</div>
+            </Collapsible>
+          </li>
+        )}
+        {twt && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="fab fa-2x fa-twitter teal-text"></i>
+              </div>
+              <div>{twt}</div>
+            </Collapsible>
+          </li>
+        )}
+        {yt && (
+          <li className="collection-item collection_item_overide">
+            <Collapsible>
+              <div>
+                <i className="fab fa-2x fa-youtube teal-text"></i>
+              </div>
+              <div>{yt}</div>
+            </Collapsible>
+          </li>
+        )}
+      </ul>
       <button onClick={prevStep} className="btn white black-text shadow">
         <b>Back</b>
         <i className="material-icons left">navigate_before</i>
       </button>
-      <button onClick={nextStep} className="btn white black-text shadow right">
-        <b>next</b>
-        <i className="material-icons right">navigate_next</i>
-      </button>
+      {!loading ? (
+        <button onClick={submit} className="btn white black-text shadow right">
+          <b>SEND</b>
+          <i className="material-icons right">send</i>
+        </button>
+      ) : (
+        <button className="btn white black-text shadow right">
+          <b>Please wait</b>
+          {/* <i className="material-icons right">send</i> */}
+        </button>
+      )}
     </RightComp>
   );
 };

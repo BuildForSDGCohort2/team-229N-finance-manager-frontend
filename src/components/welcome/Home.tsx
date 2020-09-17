@@ -9,17 +9,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
-
-const routeVariants = {
-  initial: { scale: 0.9, opacity: 0 },
-  enter: { scale: 1, opacity: 1, transition },
-  exit: {
-    scale: 0.5,
-    opacity: 0,
-    transition: { duration: 0.5, transition },
-  },
-};
+import { routeVariants } from '../utils/variables';
 
 const Home: FC = () => {
   useLayoutEffect(() => {
@@ -56,10 +46,10 @@ const Home: FC = () => {
           <br />
           <h1 className="home_title textShadow">Finance manager</h1>
           <h1 className="textShadow">Online financial accounting software</h1>
-          <p>
-            Finance manager is the online accounting software for small and
-            medium enterprises. This softwares aims to bridge knowledge gap of
-            young africans with no accounting background.
+          <p className="p">
+            Finance manager is the online financial accounting software for
+            small and medium enterprises. This softwares aims to bridge
+            knowledge gap of young africans with no accounting background.
           </p>
           <Link className="button orange" to="/login">
             Get started
@@ -76,7 +66,7 @@ const Home: FC = () => {
           transition={{ delay: 0.2, easings: 'linear' }}
           className="col s12 m5 center">
           <h1>Financial reports</h1>
-          <p>
+          <p className="p">
             This software aims to minimise the complexity of book keeping by
             providing automated generation of financial statements like business
             journals, ledgers, Trial balance, statement of financial position
@@ -108,7 +98,7 @@ const Home: FC = () => {
           </p>
           <h2>Accessible anywhere</h2>
           <img src={world} width="100%" alt="world" />
-          <p>
+          <p className="p">
             Create and access company or business data any time any where on any
             device desktop, laptop, tablet, and mobile.
           </p>
@@ -121,7 +111,7 @@ const Home: FC = () => {
           </p>
           <h2>Create company</h2>
           <img src={add} width="100%" alt="Create company" />
-          <p>
+          <p className="p">
             Signup, create your company, enter business detail, enter business
             transactions, manage and organize your business transactions and
             employees data.
@@ -135,7 +125,7 @@ const Home: FC = () => {
           </p>
           <h2>Generate reports</h2>
           <img src={data} width="100%" alt="Reports" />
-          <p>
+          <p className="p">
             Generate credible automated financial reports, like business
             jounals, ledgers, cashbook, trial balance, income statement, and
             balance sheet that depend business transactions entered.
@@ -149,7 +139,7 @@ const Home: FC = () => {
           </p>
           <h2>Make prudent desicions</h2>
           <img src={decision} width="100%" alt="Business decision" />
-          <p>
+          <p className="p">
             Basing on generated financial reports generated that follow
             accounting principles, Prudent decisions like investment decision
             can be made by managers.

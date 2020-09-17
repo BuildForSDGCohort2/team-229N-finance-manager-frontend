@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AccoutTop from '../AccoutTop';
+import { CompanyProps } from '../interface';
 
-const Journal = () => {
+const Journal: FC<{ props: any }> = ({ props }) => {
+  const { email, location, name } = props as CompanyProps;
   return (
     <div className="card-panel">
-      <AccoutTop name="General Journal" />
+      <AccoutTop
+        account="General Journal"
+        name={name}
+        email={email}
+        location={location}
+      />
       <table className="black-text striped">
         <thead>
           <tr>

@@ -1,7 +1,10 @@
 h1 {
   font-size: 40px;
 }
-
+p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
 .button {
   display: inline-block;
   border: 0;
@@ -74,4 +77,11 @@ h1 {
   background-size: cover;
   background-attachment: fixed;
   overflow-x: hidden;
+}
+
+.security_top {
+  padding: 1rem;
+  text-align: center;
+  font-style: italic;
+  // font-size: 14px;
 }

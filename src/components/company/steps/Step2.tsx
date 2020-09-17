@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import M from 'materialize-css';
 import { RightComp } from '../comps';
 import { FildSpan } from '../../welcome/comps';
 
@@ -22,11 +23,23 @@ const Step2: FC<Prop> = ({
   setDesc,
   setName,
 }) => {
+  const next = () => {
+    if (!name || !desc) {
+      M.toast({
+        html: 'Company name and description are required',
+        classes: 'rounded red',
+      });
+      return;
+    }
+    nextStep();
+  };
   return (
     <RightComp className="hover_me">
       <div className="center">
         {/* <h5>ABOUT </h5> */}
-        <p>We need to know basic information about your company</p>
+        <p className="p">
+          We need to know basic information about your company
+        </p>
 
         <div className="row">
           <div className="input-field col s12">
@@ -35,6 +48,7 @@ const Step2: FC<Prop> = ({
             <input
               id="company_name"
               value={name}
+              autoFocus={true}
               type="text"
               className="input_border"
               onChange={(e) => setName(e.target.value)}
@@ -72,12 +86,11 @@ const Step2: FC<Prop> = ({
           </div>
         </div>
       </div>
-
       <button onClick={prevStep} className="btn white black-text shadow">
         <b>Back</b>
         <i className="material-icons left">navigate_before</i>
       </button>
-      <button onClick={nextStep} className="btn white black-text shadow right">
+      <button onClick={next} className="btn white black-text shadow right">
         <b>next</b>
         <i className="material-icons right">navigate_next</i>
       </button>

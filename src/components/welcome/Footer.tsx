@@ -13,6 +13,7 @@ const Container = styled.div`
     li {
       a {
         font-size: 1.5rem;
+        color: #fff;
         &:hover {
           color: orange;
           text-decoration: underline;
