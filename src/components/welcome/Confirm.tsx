@@ -5,6 +5,7 @@ import M from 'materialize-css';
 import axios from 'axios';
 import { useThunkDispatch, useTypedSelector } from '../../redux/stateTypes';
 import { SERVER_URL } from '../utils/constants';
+import { transition } from '../utils/variables';
 import {
   FormWraper,
   FormHeader,
@@ -114,16 +115,18 @@ const Confirm = () => {
   } else
     return (
       <motion.div
-        initial={{ y: '100vh' }}
-        animate={{ y: 0 }}
-        //   initial="exit"
-        //   animate="enter"
-        //   exit="exit"
-        //   variants={routeVariants}
+      // initial={{ y: '100vh' }}
+      // animate={{ y: 0 }}
+      //   initial="exit"
+      //   animate="enter"
+      //   exit="exit"
+      //   variants={routeVariants}
       >
         <Header isHome={false} />
         <Ovary showOvary={showOvary} />
-        <FormWraper>
+        <FormWraper
+          initial={{ y: '100vh' }}
+          animate={{ y: 0, transition: { duration: 0.1, transition } }}>
           <Locker lockShow={lockShow} />
           <p className="security_top">
             We have sent security code to {email} so check your email and make
