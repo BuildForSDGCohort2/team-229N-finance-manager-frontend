@@ -3,14 +3,16 @@ import Intro from './Intro';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
-// import Step5 from './Step0';
 import Step5 from './Step5';
+import Step6 from './Step6';
 
 const MainStep = () => {
   useLayoutEffect(() => {
     M.AutoInit();
   }, []);
   const [step, setStep] = useState(1);
+  const [bankBal, setBankBal] = useState<number>();
+  const [cashBal, setCashBal] = useState<number>();
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [account, setAccount] = useState('');
@@ -70,19 +72,23 @@ const MainStep = () => {
           prevStep={prevStep}
         />
       );
-    // case 5:
-    // 	return (
-    // 		<Step5
-    // 			logo={logo}
-    // 			setLogo={setLogo}
-    // 			nextStep={nextStep}
-    // 			prevStep={prevStep}
-    // 		/>
-    // 	);
     case 5:
       return (
         <Step5
+          cashBal={cashBal}
+          bankBal={bankBal}
+          setBankBal={setBankBal}
+          setCashBal={setCashBal}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      );
+    case 6:
+      return (
+        <Step6
           account={account}
+          bankBal={bankBal}
+          cashBal={cashBal}
           desc={desc}
           email={email}
           fb={fb}

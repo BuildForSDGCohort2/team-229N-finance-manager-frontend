@@ -1,4 +1,4 @@
-export interface Response {
+export interface axiosResponse {
   success: Boolean;
   error: string;
   data: {

@@ -1,17 +1,15 @@
 import { motion } from 'framer-motion';
 import React, { useLayoutEffect, useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import M from 'materialize-css';
 import axios from 'axios';
 import { useThunkDispatch, useTypedSelector } from '../../redux/stateTypes';
 import { SERVER_URL } from '../utils/constants';
-import { routeVariants } from '../utils/variables';
 import {
   FormWraper,
   FormHeader,
   FormTop,
   FildSpan,
-  FormActions,
   FormBottom,
   Devider,
   DeviderLable,
@@ -20,9 +18,8 @@ import {
 import Header from './Header';
 import { Locker } from './Locker';
 import Ovary from './Ovary';
-import { LinkStyles } from './Register';
-import { Response } from './interface';
 import { actionTypes } from '../../redux/actions';
+import { axiosResponse } from './interface';
 
 const Confirm = () => {
   const { pending, email, token, loggedIn } = useTypedSelector(
@@ -62,7 +59,7 @@ const Confirm = () => {
       });
 
       closeOvary();
-      const { success, error, info } = res.data as Response;
+      const { success, error, info } = res.data as axiosResponse;
       if (!success) {
         M.toast({ html: error, classes: 'rounded red' });
         manageLocker();
@@ -99,14 +96,16 @@ const Confirm = () => {
       });
 
       closeOvary();
-      const { success, error, info } = res.data as Response;
+      const { success, error, info } = res.data as axiosResponse;
       if (!success) {
         M.toast({ html: error, classes: 'rounded red' });
         setInvalid(true);
       } else {
         M.toast({ html: info, classes: 'rounded green' });
       }
-    } catch (error) {}
+    } catch (error) {
+      closeOvary();
+    }
   };
   if (!pending || invalid) {
     return <Redirect to="/login" />;

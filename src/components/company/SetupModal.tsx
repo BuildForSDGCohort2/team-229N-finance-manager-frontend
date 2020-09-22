@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState, SyntheticEvent } from 'react';
 import M from 'materialize-css';
 import img from '../../asset/celebration.svg';
+import { useTypedSelector } from '../../redux/stateTypes';
 
 type Options = 'welcome' | 'setup';
 const Welcome = () => {
@@ -60,6 +61,7 @@ const Setup: FC<Props> = ({ bank, cash, setBank, setCash }) => {
   );
 };
 const SetupModal = () => {
+  // const { set } = useTypedSelector((state) => state.transactions);
   const [active, setActive] = useState<Options>('welcome');
   const [cash, setCash] = useState<number | undefined>();
   const [bank, setBank] = useState<number | undefined>();
@@ -73,10 +75,17 @@ const SetupModal = () => {
       return;
     }
   };
-  useEffect(() => {
+  const setup = () => {
     const el = document.querySelector('#setupModal') as any;
     const instance = M.Modal.init(el);
-    instance.open();
+    // if (!set) {
+    //   instance.open();
+    // }
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      setup();
+    }, 1500);
   }, []);
   return (
     <div id="setupModal" className="modal modal-fixed-footer">

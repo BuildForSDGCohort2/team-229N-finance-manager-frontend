@@ -6,13 +6,14 @@ import { FormWraper, FormHeader, FormTop, FildSpan, FormBottom } from './comps';
 import { Locker } from './Locker';
 import { Link, Redirect } from 'react-router-dom';
 import Ovary from './Ovary';
-import { Response } from './interface';
+import { axiosResponse } from './interface';
 
 // import { useGoogleLogin } from 'react-google-login';
 import Header from './Header';
 import { transition } from '../utils/variables';
 import { SERVER_URL } from '../utils/constants';
-import { useTypedSelector } from '../../redux/stateTypes';
+import { useThunkDispatch, useTypedSelector } from '../../redux/stateTypes';
+import { actionTypes } from '../../redux/actions';
 
 export const LinkStyles = {
   links: {
@@ -26,6 +27,7 @@ export const LinkStyles = {
 };
 
 const Register = () => {
+  const dispatch = useThunkDispatch();
   useLayoutEffect(() => {
     M.AutoInit();
     document.body.classList.add('login_bg');
@@ -34,31 +36,6 @@ const Register = () => {
       document.body.classList.remove('login_bg');
     };
   }, []);
-  // const onSuccess = (res: any) => {
-  //   // console.log('Login Success: currentUser:', res.profileObj);
-  //   alert(
-  //     `Logged in successfully welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
-  //   );
-  //   // refreshTokenSetup(res);
-  // };
-
-  // const onFailure = () => {
-  //   // console.log('Login failed: res:', res);
-  //   alert(`Failed to login`);
-  // };
-
-  // const { signIn } = useGoogleLogin({
-  //   onSuccess,
-  //   onFailure,
-  //   clientId,
-  //   isSignedIn: true,
-  //   accessType: 'offline',
-
-  //   // responseType: 'code',
-  //   // prompt: 'consent',
-  // });
-
-  const [] = useState(true);
   const [email, setLoginEmail] = useState('');
   const [password, setloginPass] = useState('');
   const [name, setName] = useState('');
@@ -92,13 +69,22 @@ const Register = () => {
       });
 
       closeOvary();
-      const { success, error } = res.data as Response;
+      const { success, error, token, data } = res.data as axiosResponse;
       // console.log('success', success);
       if (!success) {
         M.toast({ html: error, classes: 'rounded red' });
         manageLocker();
       } else {
-        // console.log(res);
+        // manageUnlocker();
+        dispatch({
+          type: actionTypes.LOGIN,
+          payload: {
+            token,
+            name: data.name,
+            id: data._id,
+            email: data.email,
+          },
+        });
         M.toast({ html: 'Success', classes: 'rounded green' });
         M.toast({ html: 'Account created', classes: 'rounded green' });
       }
@@ -108,9 +94,12 @@ const Register = () => {
     }
     // openOvary();
   };
-  const { loggedIn } = useTypedSelector((state) => state.auth);
+  const { loggedIn, pending } = useTypedSelector((state) => state.auth);
   if (loggedIn) {
     return <Redirect to="/companies" />;
+  }
+  if (pending) {
+    return <Redirect to="/security" />;
   }
   return (
     <motion.div

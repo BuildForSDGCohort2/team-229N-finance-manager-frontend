@@ -1,6 +1,6 @@
 import { Reducer, Action } from 'redux';
 import { actionTypes } from '../actions';
-import { CompanyInterface, User } from '../interface';
+import { CompanyInterface } from '../interface';
 
 export interface CompanyState {
   companies: CompanyInterface[];
@@ -31,6 +31,7 @@ const companyReducer: Reducer<CompanyState, ReducerAction> = (
       return {
         ...state,
         companies: state.companies.concat(payload.data),
+        available: true,
       };
     default:
       return state;

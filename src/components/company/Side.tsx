@@ -76,7 +76,7 @@ const Side = () => {
                 <div>
                   <i className="material-icons white-text">monetization_on</i>
                 </div>
-                <div>CASH ACCOUNT</div>
+                <div>Cash account</div>
               </Collapsible>
               <Collapsible
                 onClick={() =>
@@ -90,7 +90,7 @@ const Side = () => {
                 <div>
                   <i className="material-icons white-text">account_balance</i>
                 </div>
-                <div>BANK ACCOUNT</div>
+                <div>Bank account</div>
               </Collapsible>
               <Collapsible
                 onClick={() =>
@@ -104,7 +104,7 @@ const Side = () => {
                 <div>
                   <i className="material-icons white-text">functions</i>
                 </div>
-                <div>CAPPITAL ACCOUNT</div>
+                <div>Capital account</div>
               </Collapsible>
               <Collapsible
                 onClick={() =>
@@ -118,7 +118,7 @@ const Side = () => {
                 <div>
                   <i className="material-icons white-text">business</i>
                 </div>
-                <div>FiXED ASSETS ACCOUNT</div>
+                <div>Fixed asset account</div>
               </Collapsible>
             </div>
           </li>

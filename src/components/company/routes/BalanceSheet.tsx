@@ -1,9 +1,41 @@
+import dayjs from 'dayjs';
 import React, { FC } from 'react';
+import { DataArray } from '../../../redux/interface';
+import { useTypedSelector } from '../../../redux/stateTypes';
+import { getTotal, numberWithCommas } from '../../utils/helpers';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-
+// const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
+//   return (
+//     // <tr>
+//     //   <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
+//     //   <td>{details}</td>
+//     //   <td>{code}</td>
+//     //   <td className="center">{numberWithCommas(amount)}</td>
+//     //   <td className="center"></td>
+//     // </tr>
+//   );
+// };
+const Bal: FC<DataArray> = ({ amount, details, pd, code }) => {
+  return (
+    <tr>
+      <td>{details}</td>
+      <td className="center"></td>
+      <td className="center">{numberWithCommas(amount)}</td>
+    </tr>
+  );
+};
 const BalanceSheet: FC<{ props: any }> = ({ props }) => {
   const { email, location, name } = props as CompanyProps;
+  const { capital } = useTypedSelector((state) => state.capital);
+  // const { cash } = useTypedSelector((state) => state.cash);
+  // const { bank } = useTypedSelector((state) => state.bank);
+  // const balanceSheet = capital.concat(cash).concat(bank);
+  const { transactions } = useTypedSelector((state) => state.journal);
+  let totalDebit = 0;
+  let totalCredit = 0;
+  const tt = capital.map((c) => c.amount);
+  const totalCapital = getTotal(tt);
 
   return (
     <div className="card-panel">
@@ -24,6 +56,53 @@ const BalanceSheet: FC<{ props: any }> = ({ props }) => {
         </thead>
         <tbody>
           <tr>
+            <td>
+              <b>Current assets</b>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          {transactions.map((t) => {
+            t.type === 'dr'
+              ? (totalDebit += t.amount)
+              : (totalCredit += t.amount);
+            if (t.type === 'dr') {
+              return (
+                <Bal
+                  key={t._id}
+                  amount={t.amount}
+                  details={t.details}
+                  pd={t.pd}
+                  code={t.code}
+                />
+              );
+            }
+          })}
+          <tr>
+            <td>
+              <b>TOTAL ASSETS</b>
+            </td>
+            <td></td>
+            <td className="center underline">{numberWithCommas(totalDebit)}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Liabilities & Equity</b>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <Bal amount={totalCapital} details="Capital" pd={new Date()} />
+          <tr>
+            <td>
+              <b>TOTAL LIABILITIES & EQUIT</b>
+            </td>
+            <td></td>
+            <td className="center underline">
+              {numberWithCommas(totalCredit)}
+            </td>
+          </tr>
+          {/* <tr>
             <td>
               <b>Fixed assets</b>
             </td>
@@ -97,7 +176,7 @@ const BalanceSheet: FC<{ props: any }> = ({ props }) => {
             </td>
             <td></td>
             <td className="center underline">20,000,000</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>

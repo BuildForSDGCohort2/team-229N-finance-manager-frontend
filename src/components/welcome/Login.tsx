@@ -17,7 +17,7 @@ import { LinkStyles } from './Register';
 import Header from './Header';
 import { transition } from '../utils/variables';
 import { SERVER_URL } from '../utils/constants';
-import { Response } from './interface';
+import { axiosResponse } from './interface';
 
 import { actionTypes } from '../../redux/actions';
 import { useThunkDispatch, useTypedSelector } from '../../redux/stateTypes';
@@ -32,28 +32,7 @@ const Login = () => {
       document.body.classList.remove('login_bg');
     };
   }, []);
-  // const onSuccess = (res: any) => {
-  //   console.log('Login Success: currentUser:', res.profileObj);
-  //   alert(
-  //     `Logged in successfully welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
-  //   );
-  //   // refreshTokenSetup(res);
-  // };
 
-  // const onFailure = (res: any) => {
-  //   console.log('Login failed: res:', res);
-  //   alert(`Failed to login. 😢`);
-  // };
-
-  // const { signIn } = useGoogleLogin({
-  //   onSuccess,
-  //   onFailure,
-  //   clientId,
-  //   isSignedIn: true,
-  //   accessType: 'offline',
-  //   // responseType: 'code',
-  //   // prompt: 'consent',
-  // });
   const [rememberMe, setRemember] = useState(true);
   const [email, setLoginEmail] = useState('');
   const [password, setloginPass] = useState('');
@@ -90,7 +69,6 @@ const Login = () => {
       return;
     }
     openOvary();
-
     try {
       const res = await axios.post(`${SERVER_URL}/auth/login`, {
         email,
@@ -98,7 +76,7 @@ const Login = () => {
       });
 
       closeOvary();
-      const { success, error, token, data } = res.data as Response;
+      const { success, error, token, data } = res.data as axiosResponse;
       if (!success) {
         M.toast({ html: error, classes: 'rounded red' });
         manageLocker();

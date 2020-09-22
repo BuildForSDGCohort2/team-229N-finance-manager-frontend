@@ -15,6 +15,7 @@ export interface CompanyResponse {
 }
 
 export interface CompanyProps {
+  _id: string;
   name: string;
   email: string;
   location: string;

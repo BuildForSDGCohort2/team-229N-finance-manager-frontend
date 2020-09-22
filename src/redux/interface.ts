@@ -1,3 +1,5 @@
+import Journal from '../components/company/routes/Journal';
+
 export type routeTypes =
   | 'dasboard'
   | 'about'
@@ -32,3 +34,18 @@ export interface User {
   lastLogin: Date;
   name: string;
 }
+
+export interface DataArray {
+  _id?: string;
+  amount: number;
+  pd: Date;
+  code?: string;
+  id?: string;
+  type?: 'dr' | 'cr';
+  details: string;
+}
+
+// export interface JournalInterface {
+//   _id: string;
+//   data: DataArray;
+// }
