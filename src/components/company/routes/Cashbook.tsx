@@ -2,9 +2,47 @@ import React, { FC } from 'react';
 import { TableHead } from '../comps';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-
+import { numberWithCommas } from '../../utils/helpers';
+import dayjs from 'dayjs';
+import { CashBookDataArray } from '../../../redux/interface';
+import { useTypedSelector } from '../../../redux/stateTypes';
+const Debit: FC<CashBookDataArray> = ({ cash, bank, details, pd }) => {
+  return (
+    <tr>
+      <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
+      <td>{details}</td>
+      <td className="center">{numberWithCommas(cash)}</td>
+      <td className="center">{numberWithCommas(bank)}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  );
+};
+const Credit: FC<CashBookDataArray> = ({ cash, bank, details, pd }) => {
+  return (
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
+      <td>{details}</td>
+      <td className="center">{numberWithCommas(cash)}</td>
+      <td className="center">{numberWithCommas(bank)}</td>
+    </tr>
+  );
+};
 const Cashbook: FC<{ props: any }> = ({ props }) => {
   const { email, location, name } = props as CompanyProps;
+  const { cashbook } = useTypedSelector((state) => state.cashbook);
+  let totalDrcash = 0;
+  let totalDrbank = 0;
+  let totalCrcash = 0;
+  let totalCrbank = 0;
+  let balCash = 0;
+  let balBank = 0;
   return (
     <div className="card-panel">
       <AccoutTop
@@ -31,45 +69,76 @@ const Cashbook: FC<{ props: any }> = ({ props }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair Eclair Eclair Eclair Eclair Eclair Eclair</td>
-            <td className="center">20,000,000</td>
-            <td className="center">20,000,000</td>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td className="center">20,000,000</td>
-            <td className="center">20,000,000</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td className="center">3.76</td>
-            <td className="center">0.87</td>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td className="center">3.76</td>
-            <td className="center">0.87</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td className="center">7.00</td>
-            <td className="center">7.00</td>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td className="center">7.00</td>
-            <td className="center">7.00</td>
-          </tr>
+          {cashbook.map((t) => {
+            if (t.type === 'dr') {
+              totalDrcash += t.cash;
+              totalDrbank += t.bank;
+            } else {
+              totalCrcash += t.cash;
+              totalCrbank += t.bank;
+            }
+
+            return t.type === 'dr' ? (
+              <Debit
+                key={t._id}
+                cash={t.cash}
+                bank={t.bank}
+                details={t.details}
+                pd={t.pd}
+                code={t.code}
+              />
+            ) : (
+              <Credit
+                key={t._id}
+                cash={t.cash}
+                bank={t.bank}
+                details={t.details}
+                pd={t.pd}
+                code={t.code}
+              />
+            );
+          })}
+          {(balCash = totalDrcash - totalCrcash)}
+          {(balBank = totalDrbank - totalCrbank)}
           <tr>
             <td></td>
-            <td>C/d </td>
-            <td className="center underline">7.00</td>
-            <td className="center underline">7.00</td>
             <td></td>
-            <td>C/d</td>
-            <td className="center underline">7.00</td>
-            <td className="center underline">7.00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Bal c/d</td>
+            <td></td>
+            <td className="center">{numberWithCommas(balCash)}</td>
+            <td className="center">{numberWithCommas(balBank)}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <b>TOTAL</b>
+            </td>
+            <td></td>
+            <td className="center underline">
+              {numberWithCommas(totalDrcash)}
+            </td>
+            <td className="center underline">
+              {numberWithCommas(totalDrbank)}
+            </td>
+            <td></td>
+            <td></td>
+            <td className="center underline">
+              {numberWithCommas(totalCrcash)}
+            </td>
+            <td className="center underline">
+              {numberWithCommas(totalDrbank)}
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import M from 'materialize-css';
 import { RightComp } from '../comps';
-import { FildSpan } from '../../welcome/comps';
 
 interface Prop {
   nextStep: () => void;
@@ -23,6 +22,9 @@ const Step2: FC<Prop> = ({
   setDesc,
   setName,
 }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   const next = () => {
     if (!name || !desc) {
       M.toast({

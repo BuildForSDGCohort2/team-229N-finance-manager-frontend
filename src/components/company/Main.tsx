@@ -1,5 +1,4 @@
-import React, { FC, useState } from 'react';
-import { routeTypes } from '../../redux/interface';
+import React, { FC } from 'react';
 import Dashboard from './routes/Dashboard';
 import About from './routes/About';
 import Cash from './routes/Cash';
@@ -13,12 +12,14 @@ import Journal from './routes/Journal';
 import IncomeStatement from './routes/IncomeStatement';
 import BalanceSheet from './routes/BalanceSheet';
 import { useTypedSelector } from '../../redux/stateTypes';
-// import { CompanyProps } from './interface';
+import Asset from './transactions/Asset';
 
 const Main: FC<{ props: any }> = ({ props }) => {
-  // const [route, setRoute] = useState<routeTypes>('cash');
   const { route } = useTypedSelector((state) => state.routes);
+
   switch (route) {
+    case 'asset':
+      return <Asset />;
     case 'dasboard':
       return <Dashboard />;
     case 'about':

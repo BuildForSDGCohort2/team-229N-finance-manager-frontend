@@ -101,6 +101,17 @@ const Company = () => {
     },
     [dispatch]
   );
+  const getAsset = useCallback(
+    async (data) => {
+      dispatch({
+        type: actionTypes.GET_ASSET,
+        payload: {
+          data,
+        },
+      });
+    },
+    [dispatch]
+  );
   const getInitialData = async () => {
     // alert('yess');
     const id = compId;
@@ -127,6 +138,7 @@ const Company = () => {
         await getCapital(res.data.data.capital);
         await getCash(res.data.data.cash);
         await getJournal(res.data.data.journal);
+        await getAsset(res.data.data.assets);
         // }
 
         // M.toast({ html: info, classes: 'rounded green' });

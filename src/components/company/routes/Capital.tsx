@@ -29,50 +29,8 @@ const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
 const Capital: FC<{ props: any }> = ({ props }) => {
   const { email, location, name, _id } = props as CompanyProps;
   const { capital } = useTypedSelector((state) => state.capital);
-  // const [showOvary, setShowOvary] = useState(false);
-  // const dispatch = useThunkDispatch();
-  // const openOvary = () => {
-  //   setShowOvary(true);
-  // };
-  // const closeOvary = () => {
-  //   setShowOvary(false);
-  // };
-  // useEffect(() => {
-  //   getBank();
-  // }, []);
-  // const getBank = async () => {
-  //   // alert('yess');
-  //   const id = _id;
-  //   if (!id) {
-  //     return;
-  //   }
-  //   openOvary();
-  //   // console.log('companyId', compId);
-  //   try {
-  //     const res = await axios.get(`${SERVER_URL}/transaction/getcapital/${id}`);
-  //     // console.log('response', res.data);
-  //     closeOvary();
-  //     const { success, error } = res.data as axiosResponse;
-  //     if (!success) {
-  //       M.toast({ html: error, classes: 'rounded red' });
-  //       // setInvalid(true);
-  //     } else {
-  //       if (res.data.data.length > 0) {
-  //         dispatch({
-  //           type: actionTypes.GET_CAPITAL,
-  //           payload: {
-  //             data: res.data.data,
-  //           },
-  //         });
-  //       }
 
-  //       // M.toast({ html: info, classes: 'rounded green' });
-  //     }
-  //   } catch (error) {
-  //     closeOvary();
-  //   }
-  // };
-  let total = 0;
+  let totalCredit = 0;
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
@@ -100,7 +58,7 @@ const Capital: FC<{ props: any }> = ({ props }) => {
           </thead>
           <tbody>
             {capital.map((t) => {
-              total += t.amount;
+              totalCredit += t.amount;
               return (
                 <Credit
                   key={t._id}
@@ -120,21 +78,23 @@ const Capital: FC<{ props: any }> = ({ props }) => {
               <td></td>
             </tr>
             <tr>
-              <td>Balance c/d</td>
+              <td></td>
               <td> </td>
               <td></td>
+              <td>Balance c/d</td>
               <td></td>
-              <td></td>
-              <td className="center">{numberWithCommas(total)}</td>
+              <td className="center">{numberWithCommas(totalCredit)}</td>
             </tr>
             <tr>
               <td>TOTAL</td>
               <td></td>
-              <td></td>
+              <td className="center underline">
+                <b>{numberWithCommas(totalCredit)}</b>
+              </td>
               <td></td>
               <td></td>
               <td className="center underline">
-                <b>{numberWithCommas(total)}</b>
+                <b>{numberWithCommas(totalCredit)}</b>
               </td>
             </tr>
           </tbody>

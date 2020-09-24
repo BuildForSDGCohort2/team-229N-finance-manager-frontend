@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { RightComp } from '../comps';
-
+import M from 'materialize-css';
 interface Prop {
   nextStep: () => void;
   prevStep: () => void;
@@ -21,6 +21,9 @@ const Step4: FC<Prop> = ({
   twt,
   yt,
 }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   return (
     <RightComp className="hover_me">
       <div className="center">

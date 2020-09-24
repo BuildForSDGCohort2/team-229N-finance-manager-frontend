@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { RightComp } from '../comps';
 import M from 'materialize-css';
 
@@ -22,6 +22,9 @@ const Step3: FC<Prop> = ({
   setTel,
   tel,
 }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   const next = () => {
     if (!email) {
       M.toast({

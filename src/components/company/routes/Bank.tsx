@@ -83,7 +83,8 @@ const Bank: FC<{ props: any }> = ({ props }) => {
   //   }
   // };
   // const bankBal = bank.filter((c) => c.details === 'Bank');
-  let total = 0;
+  let totalDebit = 0;
+  let totalCredit = 0;
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
@@ -112,7 +113,9 @@ const Bank: FC<{ props: any }> = ({ props }) => {
           <tbody>
             {bank.map((t) => {
               if (t.type === 'dr') {
-                total += t.amount;
+                totalDebit += t.amount;
+              } else {
+                totalCredit += t.amount;
               }
 
               return t.type === 'dr' ? (
@@ -144,7 +147,9 @@ const Bank: FC<{ props: any }> = ({ props }) => {
             <tr>
               <td>Balance c/d</td>
               <td> </td>
-              <td className="center">{numberWithCommas(total)}</td>
+              <td className="center">
+                {numberWithCommas(totalDebit - totalCredit)}
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -153,11 +158,13 @@ const Bank: FC<{ props: any }> = ({ props }) => {
               <td>TOTAL</td>
               <td> </td>
               <td className="center underline">
-                <b>{numberWithCommas(total)}</b>
+                <b>{numberWithCommas(totalDebit)}</b>
               </td>
               <td></td>
               <td></td>
-              <td className="center"></td>
+              <td className="center underline">
+                <b>{numberWithCommas(totalDebit)}</b>
+              </td>
             </tr>
           </tbody>
         </table>

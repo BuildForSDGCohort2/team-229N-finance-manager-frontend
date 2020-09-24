@@ -46,18 +46,49 @@ const Side = () => {
               <div>ABOUT</div>
             </Collapsible>
           </li>
-          <li className="collection-item transparent collection_item_overide">
-            <Collapsible>
-              <div>
-                <i className="material-icons white-text">border_color</i>
-              </div>
-              <a className="btn-flat white-text modal-trigger" href="#modal2">
-                Create Transaction
-              </a>
-            </Collapsible>
-          </li>
         </ul>
         <ul className="collapsible" data-collapsible="accordion">
+          <li>
+            <div className="collapsible-header transparent">
+              <i className="material-icons">create</i>
+              TRANSACTIONS
+            </div>
+
+            <div className="collapsible-body collapsible_overide">
+              <Collapsible
+                onClick={() =>
+                  dispatch({
+                    type: actionTypes.CHANGE_ROUTE,
+                    payload: {
+                      route: 'asset',
+                    },
+                  })
+                }>
+                <div>
+                  <i className="material-icons white-text">queue_play_next</i>
+                </div>
+                <div>Fixed Asset management</div>
+              </Collapsible>
+            </div>
+            <div className="collapsible-body collapsible_overide">
+              <Collapsible
+              // onClick={() =>
+              //   dispatch({
+              //     type: actionTypes.CHANGE_ROUTE,
+              //     payload: {
+              //       route: 'cash',
+              //     },
+              //   })
+              // }
+              >
+                <div>
+                  <i className="material-icons white-text">queue_play_next</i>
+                </div>
+                <div>Fixed Asset management</div>
+              </Collapsible>
+            </div>
+          </li>
+
           <li>
             <div className="collapsible-header transparent">
               <i className="material-icons">account_balance_wallet</i>

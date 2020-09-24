@@ -2,7 +2,11 @@ import dayjs from 'dayjs';
 import React, { FC } from 'react';
 import { DataArray } from '../../../redux/interface';
 import { useTypedSelector } from '../../../redux/stateTypes';
-import { getTotal, numberWithCommas } from '../../utils/helpers';
+import {
+  arrayDiffTotal,
+  getTotal,
+  numberWithCommas,
+} from '../../utils/helpers';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
 // const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
@@ -28,15 +32,17 @@ const Bal: FC<DataArray> = ({ amount, details, pd, code }) => {
 const BalanceSheet: FC<{ props: any }> = ({ props }) => {
   const { email, location, name } = props as CompanyProps;
   const { capital } = useTypedSelector((state) => state.capital);
-  // const { cash } = useTypedSelector((state) => state.cash);
-  // const { bank } = useTypedSelector((state) => state.bank);
-  // const balanceSheet = capital.concat(cash).concat(bank);
-  const { transactions } = useTypedSelector((state) => state.journal);
-  let totalDebit = 0;
-  let totalCredit = 0;
+  const { asset } = useTypedSelector((state) => state.asset);
+  const { cash } = useTypedSelector((state) => state.cash);
+  const { bank } = useTypedSelector((state) => state.bank);
+  const cashBal = arrayDiffTotal(cash);
+  const bankBal = arrayDiffTotal(bank);
+  // const { transactions } = useTypedSelector((state) => state.journal);
+  let totalDebit = cashBal + bankBal;
+
   const tt = capital.map((c) => c.amount);
   const totalCapital = getTotal(tt);
-
+  let totalCredit = totalCapital;
   return (
     <div className="card-panel">
       <AccoutTop
@@ -62,10 +68,11 @@ const BalanceSheet: FC<{ props: any }> = ({ props }) => {
             <td></td>
             <td></td>
           </tr>
-          {transactions.map((t) => {
-            t.type === 'dr'
-              ? (totalDebit += t.amount)
-              : (totalCredit += t.amount);
+          <Bal amount={cashBal} details="Cash" />
+          <Bal amount={bankBal} details="Bank" />
+          {asset.map((t) => {
+            t.type === 'dr' && (totalDebit += t.amount);
+
             if (t.type === 'dr') {
               return (
                 <Bal
@@ -83,7 +90,9 @@ const BalanceSheet: FC<{ props: any }> = ({ props }) => {
               <b>TOTAL ASSETS</b>
             </td>
             <td></td>
-            <td className="center underline">{numberWithCommas(totalDebit)}</td>
+            <td className="center underline">
+              <b>{numberWithCommas(totalDebit)}</b>
+            </td>
           </tr>
           <tr>
             <td>
@@ -92,14 +101,14 @@ const BalanceSheet: FC<{ props: any }> = ({ props }) => {
             <td></td>
             <td></td>
           </tr>
-          <Bal amount={totalCapital} details="Capital" pd={new Date()} />
+          <Bal amount={totalCapital} details="Capital" />
           <tr>
             <td>
               <b>TOTAL LIABILITIES & EQUIT</b>
             </td>
             <td></td>
             <td className="center underline">
-              {numberWithCommas(totalCredit)}
+              <b>{numberWithCommas(totalCredit)}</b>
             </td>
           </tr>
           {/* <tr>

@@ -1,5 +1,3 @@
-import Journal from '../components/company/routes/Journal';
-
 export type routeTypes =
   | 'dasboard'
   | 'about'
@@ -12,7 +10,8 @@ export type routeTypes =
   | 'ledger'
   | 'journal'
   | 'incomeStatement'
-  | 'balanceSheet';
+  | 'balanceSheet'
+  | 'asset';
 
 export interface CompanyInterface {
   _id: string;
@@ -38,14 +37,31 @@ export interface User {
 export interface DataArray {
   _id?: string;
   amount: number;
-  pd: Date;
+  pd?: Date;
   code?: string;
   id?: string;
   type?: 'dr' | 'cr';
   details: string;
 }
-
-// export interface JournalInterface {
-//   _id: string;
-//   data: DataArray;
-// }
+export interface CashBookDataArray {
+  _id?: string;
+  pd: Date;
+  code?: string;
+  id?: string;
+  type?: 'dr' | 'cr';
+  details: string;
+  cash: number;
+  bank: number;
+}
+export interface LedgerDataArray {
+  _id?: string;
+  // amount?: number;
+  diff?: number;
+  dr?: number;
+  cr?: number;
+  pd?: Date;
+  code?: string;
+  id?: string;
+  type?: 'dr' | 'cr';
+  details: string;
+}

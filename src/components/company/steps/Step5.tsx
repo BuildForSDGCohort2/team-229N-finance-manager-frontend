@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { RightComp } from '../comps';
 import M from 'materialize-css';
 
@@ -18,6 +18,9 @@ const Step5: FC<Prop> = ({
   setCashBal,
   setBankBal,
 }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   const next = () => {
     if (!cashBal && !bankBal) {
       M.toast({ html: 'Enter bank or cash balance', classes: 'rounded red' });

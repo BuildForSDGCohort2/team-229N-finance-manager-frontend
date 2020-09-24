@@ -1,18 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { TableHead } from '../comps';
-import axios from 'axios';
-import M from 'materialize-css';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-import { useThunkDispatch, useTypedSelector } from '../../../redux/stateTypes';
+import { useTypedSelector } from '../../../redux/stateTypes';
 import { DataArray } from '../../../redux/interface';
 import { numberWithCommas } from '../../utils/helpers';
 import dayjs from 'dayjs';
-import Ovary from '../../welcome/Ovary';
-import { SERVER_URL } from '../../utils/constants';
-import { actionTypes } from '../../../redux/actions';
-import { axiosResponse } from '../../welcome/interface';
-const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
+const Debit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
@@ -25,7 +19,7 @@ const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
     </tr>
   );
 };
-const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
+const Credit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td className="center"></td>
@@ -39,53 +33,11 @@ const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
   );
 };
 const Cash: FC<{ props: any }> = ({ props }) => {
-  const { email, location, name, _id } = props as CompanyProps;
+  const { email, location, name } = props as CompanyProps;
   const { cash } = useTypedSelector((state) => state.cash);
-  // const [showOvary, setShowOvary] = useState(false);
-  // const dispatch = useThunkDispatch();
-  // const openOvary = () => {
-  //   setShowOvary(true);
-  // };
-  // const closeOvary = () => {
-  //   setShowOvary(false);
-  // };
 
-  let total = 0;
-  // useEffect(() => {
-  //   getCash();
-  // }, []);
-  // const getCash = async () => {
-  //   // alert('yess');
-  //   const id = _id;
-  //   if (!id) {
-  //     return;
-  //   }
-  //   openOvary();
-  //   // console.log('companyId', compId);
-  //   try {
-  //     const res = await axios.get(`${SERVER_URL}/transaction/getcash/${id}`);
-  //     // console.log('response', res.data);
-  //     closeOvary();
-  //     const { success, error } = res.data as axiosResponse;
-  //     if (!success) {
-  //       M.toast({ html: error, classes: 'rounded red' });
-  //       // setInvalid(true);
-  //     } else {
-  //       if (res.data.data.length > 0) {
-  //         dispatch({
-  //           type: actionTypes.GET_CASH,
-  //           payload: {
-  //             data: res.data.data,
-  //           },
-  //         });
-  //       }
-
-  //       // M.toast({ html: info, classes: 'rounded green' });
-  //     }
-  //   } catch (error) {
-  //     closeOvary();
-  //   }
-  // };
+  let totalDebit = 0;
+  let totalCredit = 0;
 
   return (
     <>
@@ -114,10 +66,9 @@ const Cash: FC<{ props: any }> = ({ props }) => {
           </thead>
           <tbody>
             {cash.map((t) => {
-              if (t.type === 'dr') {
-                total += t.amount;
-              }
-
+              t.type === 'dr'
+                ? (totalDebit += t.amount)
+                : (totalCredit += t.amount);
               return t.type === 'dr' ? (
                 <Debit
                   key={t._id}
@@ -147,7 +98,9 @@ const Cash: FC<{ props: any }> = ({ props }) => {
             <tr>
               <td>Balance c/d</td>
               <td> </td>
-              <td className="center">{numberWithCommas(total)}</td>
+              <td className="center">
+                {numberWithCommas(totalDebit - totalCredit)}
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -156,11 +109,13 @@ const Cash: FC<{ props: any }> = ({ props }) => {
               <td>TOTAL</td>
               <td> </td>
               <td className="center underline">
-                <b>{numberWithCommas(total)}</b>
+                <b>{numberWithCommas(totalDebit)}</b>
               </td>
               <td></td>
               <td></td>
-              <td className="center"></td>
+              <td className="center underline">
+                <b>{numberWithCommas(totalDebit)}</b>
+              </td>
             </tr>
           </tbody>
         </table>
