@@ -1,0 +1,12 @@
+name: Testing finance manager
+on: [push]
+jobs:
+  testing:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependences
+        run: npm install
+      - name: Run tests
+        run: npm test
