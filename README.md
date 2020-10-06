@@ -14,12 +14,12 @@
 - Reactjs, Redux, styled-components, saas, react-motion (Frontend).
 - Nodejs, express, (Backend)
 - MongoDb (database)
-  -Node mailer
+- Node mailer (For authorization codes)
+- React testing library, Jest (For intergration and End to end testing)
 
 ## Security.
 
-1. Google Auth.
-2. Two factor authentication
+- Two factor authentication
 
 ## Software Features.
 
@@ -28,10 +28,10 @@
 - [x] Two factor authentication
 - [x] Journals
 - [x] Ledgers
-- [ ] Cashbooks
+- [x] Cashbooks
 - [x] Trial balance
-- [ ] Income statement (Statement of financial position)
+- [x] Income statement (Statement of financial position)
 - [x] Balance sheet
 - [ ] Payroll
-- [ ] Printable reports
-- [ ] Stock management
+- [x] Printable reports
+- [x] Stock management
