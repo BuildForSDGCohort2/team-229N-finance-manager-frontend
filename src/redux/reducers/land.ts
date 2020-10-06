@@ -2,27 +2,27 @@ import { Reducer, Action } from 'redux';
 import { actionTypes } from '../actions';
 import { DataArray } from '../interface';
 
-export interface purchaseState {
-  purchase: DataArray[];
+export interface landState {
+  land: DataArray[];
 }
 interface ReducerAction extends Action {
   type: actionTypes;
   payload: any;
 }
 
-const init: purchaseState = {
-  purchase: [],
+const init: landState = {
+  land: [],
 };
 
-const purchaseReducer: Reducer<purchaseState, ReducerAction> = (
+const landReducer: Reducer<landState, ReducerAction> = (
   state = init,
   { type, payload }
 ) => {
   switch (type) {
-    case actionTypes.GET_PURCHASE:
+    case actionTypes.GET_LAND:
       return {
         ...state,
-        purchase: payload.data,
+        land: payload.data,
         // set: true,
       };
     // case actionTypes.CREATE_COMPANY:
@@ -35,4 +35,4 @@ const purchaseReducer: Reducer<purchaseState, ReducerAction> = (
   }
 };
 
-export default purchaseReducer;
+export default landReducer;

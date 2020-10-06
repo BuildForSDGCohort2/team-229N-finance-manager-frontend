@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import { TableHead } from '../comps';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
@@ -6,6 +6,7 @@ import { useTypedSelector } from '../../../redux/stateTypes';
 import { DataArray } from '../../../redux/interface';
 import { numberWithCommas } from '../../utils/helpers';
 import dayjs from 'dayjs';
+import PrintButton from '../Print';
 const Debit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
@@ -32,17 +33,17 @@ const Credit: FC<DataArray> = ({ amount, details, pd }) => {
     </tr>
   );
 };
-const Cash: FC<{ props: any }> = ({ props }) => {
-  const { email, location, name } = props as CompanyProps;
+const Cash: FC<{ props: CompanyProps }> = ({ props }) => {
+  const { email, location, name } = props;
   const { cash } = useTypedSelector((state) => state.cash);
 
   let totalDebit = 0;
   let totalCredit = 0;
-
+  const componentRef = useRef(null);
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
-      <div className="card-panel">
+      <div className="card-panel" ref={componentRef}>
         <AccoutTop
           account="Cash Acount"
           name={name}
@@ -120,6 +121,7 @@ const Cash: FC<{ props: any }> = ({ props }) => {
           </tbody>
         </table>
       </div>
+      <PrintButton componentRef={componentRef} />
     </>
   );
 };

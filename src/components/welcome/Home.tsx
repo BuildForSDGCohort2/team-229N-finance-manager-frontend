@@ -55,7 +55,7 @@ const Home: FC = () => {
               small and medium enterprises. This softwares aims to bridge
               knowledge gap of young africans with no accounting background.
             </p>
-            <Link className="button orange" to="/login">
+            <Link className="button orange" data-testid="gotoLogin" to="/login">
               Get started
             </Link>
           </motion.div>

@@ -7,11 +7,13 @@ import { JournalState } from './reducers/journal';
 import { cashState } from './reducers/cash';
 import { bankState } from './reducers/bank';
 import { capitalState } from './reducers/capital';
-import { assetState } from './reducers/asset';
+import { landState } from './reducers/land';
 import { salesState } from './reducers/sales';
 import { expenseState } from './reducers/expenses';
-import { purchaseState } from './reducers/purchase.';
+import { stockState } from './reducers/stock';
 import { cashbookState } from './reducers/cashbook';
+import { machineState } from './reducers/machine';
+import { vehicleState } from './reducers/vehicle';
 
 export default interface State {
   routes: RouteState;
@@ -21,11 +23,13 @@ export default interface State {
   cash: cashState;
   bank: bankState;
   capital: capitalState;
-  asset: assetState;
+  land: landState;
   sales: salesState;
   expenses: expenseState;
-  purchase: purchaseState;
+  stock: stockState;
   cashbook: cashbookState;
+  machine: machineState;
+  vehicle: vehicleState;
 }
 
 export const useTypedSelector: TypedUseSelectorHook<State> = useSelector;

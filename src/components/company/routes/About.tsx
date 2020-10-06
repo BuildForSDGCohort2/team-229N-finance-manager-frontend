@@ -8,18 +8,8 @@ import { CompanyProps } from '../interface';
 // import ReactPlaceholder from "react-placeholder";
 // import ReactHtmlParser from "react-html-parser";
 // import { Helmet } from "react-helmet";
-const About: FC<{ props: any }> = ({ props }) => {
-  const {
-    bank,
-    desc,
-    email,
-    fb,
-    location,
-    name,
-    tel,
-    twt,
-    yt,
-  } = props as CompanyProps;
+const About: FC<{ props: CompanyProps }> = ({ props }) => {
+  const { bank, desc, email, fb, location, name, tel, twt, yt } = props;
   useLayoutEffect(() => {
     M.AutoInit();
   }, []);

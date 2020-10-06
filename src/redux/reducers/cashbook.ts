@@ -25,11 +25,6 @@ const cashbookReducer: Reducer<cashbookState, ReducerAction> = (
         cashbook: payload.data,
         // set: true,
       };
-    // case actionTypes.CREATE_COMPANY:
-    //   return {
-    //     ...state,
-    //     companies: state.companies.concat(payload.data),
-    //   };
     default:
       return state;
   }

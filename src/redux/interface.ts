@@ -4,14 +4,18 @@ export type routeTypes =
   | 'cash'
   | 'bank'
   | 'capital'
-  | 'fixedAssets'
+  | 'manageStock'
   | 'cashBook'
   | 'trialBalance'
   | 'ledger'
   | 'journal'
   | 'incomeStatement'
   | 'balanceSheet'
-  | 'asset';
+  | 'asset'
+  | 'stock'
+  | 'sales'
+  | 'pay'
+  | 'expenses';
 
 export interface CompanyInterface {
   _id: string;
@@ -42,6 +46,7 @@ export interface DataArray {
   id?: string;
   type?: 'dr' | 'cr';
   details: string;
+  sold?: Boolean;
 }
 export interface CashBookDataArray {
   _id?: string;
@@ -64,4 +69,16 @@ export interface LedgerDataArray {
   id?: string;
   type?: 'dr' | 'cr';
   details: string;
+}
+
+export interface StockArray {
+  _id?: string;
+  price: number;
+  pd?: Date;
+  code?: string;
+  id?: string;
+  qty: number;
+  item: string;
+  sPrice: number;
+  sqty: number;
 }

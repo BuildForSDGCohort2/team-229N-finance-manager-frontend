@@ -1,194 +1,118 @@
-import dayjs from 'dayjs';
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import { DataArray } from '../../../redux/interface';
-import { useTypedSelector } from '../../../redux/stateTypes';
-import {
-  arrayDiffTotal,
-  getTotal,
-  numberWithCommas,
-} from '../../utils/helpers';
+import { numberWithCommas } from '../../utils/helpers';
+import { useAccountBalance } from '../../utils/hooks';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-// const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
-//   return (
-//     // <tr>
-//     //   <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
-//     //   <td>{details}</td>
-//     //   <td>{code}</td>
-//     //   <td className="center">{numberWithCommas(amount)}</td>
-//     //   <td className="center"></td>
-//     // </tr>
-//   );
-// };
-const Bal: FC<DataArray> = ({ amount, details, pd, code }) => {
+import PrintButton from '../Print';
+
+const Bal: FC<DataArray> = ({ amount, details }) => {
   return (
     <tr>
       <td>{details}</td>
       <td className="center"></td>
-      <td className="center">{numberWithCommas(amount)}</td>
+      <td className="center">
+        {amount > 0 && numberWithCommas(amount)}
+        {amount === 0 && numberWithCommas(amount)}
+        {amount < 0 && '(' + numberWithCommas(Math.abs(amount)) + ')'}
+      </td>
     </tr>
   );
 };
-const BalanceSheet: FC<{ props: any }> = ({ props }) => {
-  const { email, location, name } = props as CompanyProps;
-  const { capital } = useTypedSelector((state) => state.capital);
-  const { asset } = useTypedSelector((state) => state.asset);
-  const { cash } = useTypedSelector((state) => state.cash);
-  const { bank } = useTypedSelector((state) => state.bank);
-  const cashBal = arrayDiffTotal(cash);
-  const bankBal = arrayDiffTotal(bank);
-  // const { transactions } = useTypedSelector((state) => state.journal);
-  let totalDebit = cashBal + bankBal;
+const BalanceSheet: FC<{ props: CompanyProps }> = ({ props }) => {
+  const { email, location, name } = props;
+  const {
+    landBal,
+    bankBal,
+    machineBal,
+    vehicleBal,
+    cashBal,
+    totalCapital,
+    balSheetCreditTotal,
+    balSheetDebitTotal,
+    stockValue,
+    profit,
+    fixedAssetAvailable,
+  } = useAccountBalance();
 
-  const tt = capital.map((c) => c.amount);
-  const totalCapital = getTotal(tt);
-  let totalCredit = totalCapital;
+  const componentRef = useRef(null);
+
   return (
-    <div className="card-panel">
-      <AccoutTop
-        account="Balance sheet"
-        name={name}
-        email={email}
-        location={location}
-      />
+    <>
+      <div className="card-panel" ref={componentRef}>
+        <AccoutTop
+          account="Balance sheet"
+          name={name}
+          email={email}
+          location={location}
+        />
 
-      <table className="black-text striped">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th className="center">Amount (USD)</th>
-            <th className="center">Amount (USD)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <b>Current assets</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <Bal amount={cashBal} details="Cash" />
-          <Bal amount={bankBal} details="Bank" />
-          {asset.map((t) => {
-            t.type === 'dr' && (totalDebit += t.amount);
+        <table className="black-text striped">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th className="center">Amount (USD)</th>
+              <th className="center">Amount (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fixedAssetAvailable() && (
+              <tr>
+                <td>
+                  <b>Fixed assets</b>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+            )}
+            {landBal > 0 && <Bal amount={landBal} details="Land" />}
+            {machineBal > 0 && <Bal amount={machineBal} details="Machine" />}
+            {vehicleBal > 0 && <Bal amount={vehicleBal} details="Vehicle" />}
 
-            if (t.type === 'dr') {
-              return (
-                <Bal
-                  key={t._id}
-                  amount={t.amount}
-                  details={t.details}
-                  pd={t.pd}
-                  code={t.code}
-                />
-              );
-            }
-          })}
-          <tr>
-            <td>
-              <b>TOTAL ASSETS</b>
-            </td>
-            <td></td>
-            <td className="center underline">
-              <b>{numberWithCommas(totalDebit)}</b>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>Liabilities & Equity</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <Bal amount={totalCapital} details="Capital" />
-          <tr>
-            <td>
-              <b>TOTAL LIABILITIES & EQUIT</b>
-            </td>
-            <td></td>
-            <td className="center underline">
-              <b>{numberWithCommas(totalCredit)}</b>
-            </td>
-          </tr>
-          {/* <tr>
-            <td>
-              <b>Fixed assets</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Building</td>
-            <td className="center">0.87</td>
-            <td className="center">0.87</td>
-          </tr>
-          <tr>
-            <td>Equipment</td>
-            <td className="center">3.76</td>
-            <td className="center">3.76</td>
-          </tr>
-          <tr>
-            <td>Motor Vehicle</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Current assets</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Cash</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>Bank</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>Acconts recievable</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>
-              <b>TOTAL ASSETS</b>
-            </td>
-            <td></td>
-            <td className="center underline">20,000,000</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Liabilities & Equity</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Acconts payable</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>Capital</td>
-            <td className="center"></td>
-            <td className="center">7.00</td>
-          </tr>
-          <tr>
-            <td>
-              <b>TOTAL ASSETS</b>
-            </td>
-            <td></td>
-            <td className="center underline">20,000,000</td>
-          </tr> */}
-        </tbody>
-      </table>
-    </div>
+            <tr>
+              <td>
+                <b>Current assets</b>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            {cashBal > 0 && <Bal amount={cashBal} details="Cash" />}
+            {bankBal > 0 && <Bal amount={bankBal} details="Bank" />}
+            {stockValue > 0 && <Bal amount={stockValue} details="Stock" />}
+            <tr>
+              <td>
+                <b>TOTAL ASSETS</b>
+              </td>
+              <td></td>
+              <td className="center underline">
+                <b>{numberWithCommas(balSheetDebitTotal)}</b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Liabilities & Equity</b>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <Bal amount={totalCapital} details="Capital" />
+            {profit > 0 && <Bal amount={profit} details="Profit" />}
+            {profit < 0 && <Bal amount={profit} details="Loss" />}
+
+            <tr>
+              <td>
+                <b>TOTAL LIABILITIES & EQUIT</b>
+              </td>
+              <td></td>
+              <td className="center underline">
+                <b>{numberWithCommas(balSheetCreditTotal)}</b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <PrintButton componentRef={componentRef} />
+    </>
   );
 };
 

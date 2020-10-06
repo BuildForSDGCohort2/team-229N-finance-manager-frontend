@@ -2,27 +2,27 @@ import { Reducer, Action } from 'redux';
 import { actionTypes } from '../actions';
 import { DataArray } from '../interface';
 
-export interface expenseState {
-  expenses: DataArray[];
+export interface vehicleState {
+  vehicle: DataArray[];
 }
 interface ReducerAction extends Action {
   type: actionTypes;
   payload: any;
 }
 
-const init: expenseState = {
-  expenses: [],
+const init: vehicleState = {
+  vehicle: [],
 };
 
-const expenseReducer: Reducer<expenseState, ReducerAction> = (
+const vehicleReducer: Reducer<vehicleState, ReducerAction> = (
   state = init,
   { type, payload }
 ) => {
   switch (type) {
-    case actionTypes.GET_EXPENSES:
+    case actionTypes.GET_VEHICLE:
       return {
         ...state,
-        expenses: payload.data,
+        vehicle: payload.data,
         // set: true,
       };
 
@@ -31,4 +31,4 @@ const expenseReducer: Reducer<expenseState, ReducerAction> = (
   }
 };
 
-export default expenseReducer;
+export default vehicleReducer;

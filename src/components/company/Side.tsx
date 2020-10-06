@@ -69,22 +69,36 @@ const Side = () => {
                 </div>
                 <div>Fixed Asset management</div>
               </Collapsible>
-            </div>
-            <div className="collapsible-body collapsible_overide">
+              {/* </div> */}
+              {/* payment */}
+              {/* <div className="collapsible-body collapsible_overide"> */}
               <Collapsible
-              // onClick={() =>
-              //   dispatch({
-              //     type: actionTypes.CHANGE_ROUTE,
-              //     payload: {
-              //       route: 'cash',
-              //     },
-              //   })
-              // }
-              >
+                onClick={() =>
+                  dispatch({
+                    type: actionTypes.CHANGE_ROUTE,
+                    payload: {
+                      route: 'manageStock',
+                    },
+                  })
+                }>
                 <div>
-                  <i className="material-icons white-text">queue_play_next</i>
+                  <i className="material-icons white-text">assignment</i>
                 </div>
-                <div>Fixed Asset management</div>
+                <div>Stock management</div>
+              </Collapsible>
+              <Collapsible
+                onClick={() =>
+                  dispatch({
+                    type: actionTypes.CHANGE_ROUTE,
+                    payload: {
+                      route: 'pay',
+                    },
+                  })
+                }>
+                <div>
+                  <i className="material-icons white-text">redeem</i>
+                </div>
+                <div>Pay expenses</div>
               </Collapsible>
             </div>
           </li>
@@ -142,14 +156,42 @@ const Side = () => {
                   dispatch({
                     type: actionTypes.CHANGE_ROUTE,
                     payload: {
-                      route: 'fixedAssets',
+                      route: 'sales',
                     },
                   })
                 }>
                 <div>
-                  <i className="material-icons white-text">business</i>
+                  <i className="material-icons white-text">pie_chart</i>
                 </div>
-                <div>Fixed asset account</div>
+                <div>Sales account</div>
+              </Collapsible>
+              <Collapsible
+                onClick={() =>
+                  dispatch({
+                    type: actionTypes.CHANGE_ROUTE,
+                    payload: {
+                      route: 'stock',
+                    },
+                  })
+                }>
+                <div>
+                  <i className="material-icons white-text">local_mall</i>
+                </div>
+                <div>Stock</div>
+              </Collapsible>
+              <Collapsible
+                onClick={() =>
+                  dispatch({
+                    type: actionTypes.CHANGE_ROUTE,
+                    payload: {
+                      route: 'expenses',
+                    },
+                  })
+                }>
+                <div>
+                  <i className="material-icons white-text">redeem</i>
+                </div>
+                <div>Expenses</div>
               </Collapsible>
             </div>
           </li>

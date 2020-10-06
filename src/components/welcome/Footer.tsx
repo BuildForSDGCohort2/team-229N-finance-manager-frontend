@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 const Footer = () => {
   return (
-    <Container>
+    <Container data-testid="footer">
       <ul>
         <li>
           <Link to="/">Faq</Link>

@@ -4,7 +4,7 @@ import About from './routes/About';
 import Cash from './routes/Cash';
 import Bank from './routes/Bank';
 import Capital from './routes/Capital';
-import FixedAssets from './routes/FixedAssets';
+// import FixedAssets from './routes/FixedAssets';
 import Cashbook from './routes/Cashbook';
 import Trialbalance from './routes/Trialbalance';
 import Ledger from './routes/Ledger';
@@ -13,13 +13,27 @@ import IncomeStatement from './routes/IncomeStatement';
 import BalanceSheet from './routes/BalanceSheet';
 import { useTypedSelector } from '../../redux/stateTypes';
 import Asset from './transactions/Asset';
+import { CompanyProps } from './interface';
+import ManageStock from './transactions/ManageStok';
+import Sales from './routes/Sales';
+import Stock from './routes/Stock';
+import Pay from './transactions/Pay';
+import Expense from './routes/Expense';
 
-const Main: FC<{ props: any }> = ({ props }) => {
+const Main: FC<{ props: CompanyProps }> = ({ props }) => {
   const { route } = useTypedSelector((state) => state.routes);
 
   switch (route) {
+    case 'expenses':
+      return <Expense props={props} />;
+    case 'pay':
+      return <Pay props={props} />;
+    case 'stock':
+      return <Stock props={props} />;
+    case 'sales':
+      return <Sales props={props} />;
     case 'asset':
-      return <Asset />;
+      return <Asset props={props} />;
     case 'dasboard':
       return <Dashboard />;
     case 'about':
@@ -30,8 +44,8 @@ const Main: FC<{ props: any }> = ({ props }) => {
       return <Bank props={props} />;
     case 'capital':
       return <Capital props={props} />;
-    case 'fixedAssets':
-      return <FixedAssets props={props} />;
+    case 'manageStock':
+      return <ManageStock props={props} />;
     case 'cashBook':
       return <Cashbook props={props} />;
     case 'trialBalance':

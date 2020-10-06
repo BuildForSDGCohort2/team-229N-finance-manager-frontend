@@ -1,19 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useRef } from 'react';
 import { TableHead } from '../comps';
-import M from 'materialize-css';
-import axios from 'axios';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-import { useThunkDispatch, useTypedSelector } from '../../../redux/stateTypes';
+import { useTypedSelector } from '../../../redux/stateTypes';
 import { DataArray } from '../../../redux/interface';
 import { numberWithCommas } from '../../utils/helpers';
 import dayjs from 'dayjs';
-import { SERVER_URL } from '../../utils/constants';
-import { actionTypes } from '../../../redux/actions';
-import Ovary from '../../welcome/Ovary';
+import PrintButton from '../Print';
 // import { axiosResponse } from '../../welcome/interface';
 
-const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
+const Credit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td className="center"></td>
@@ -26,15 +22,16 @@ const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
     </tr>
   );
 };
-const Capital: FC<{ props: any }> = ({ props }) => {
-  const { email, location, name, _id } = props as CompanyProps;
+const Capital: FC<{ props: CompanyProps }> = ({ props }) => {
+  const { email, location, name } = props;
   const { capital } = useTypedSelector((state) => state.capital);
 
   let totalCredit = 0;
+  const componentRef = useRef(null);
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
-      <div className="card-panel">
+      <div className="card-panel" ref={componentRef}>
         <AccoutTop
           account="Capital Account"
           name={name}
@@ -100,6 +97,7 @@ const Capital: FC<{ props: any }> = ({ props }) => {
           </tbody>
         </table>
       </div>
+      <PrintButton componentRef={componentRef} />
     </>
   );
 };

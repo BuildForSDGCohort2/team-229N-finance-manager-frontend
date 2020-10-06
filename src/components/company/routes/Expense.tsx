@@ -1,61 +1,72 @@
 import React, { FC, useRef } from 'react';
-import { DataArray } from '../../../redux/interface';
-import { useTypedSelector } from '../../../redux/stateTypes';
+import { TableHead } from '../comps';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
-import dayjs from 'dayjs';
+import { useTypedSelector } from '../../../redux/stateTypes';
+import { DataArray } from '../../../redux/interface';
 import { numberWithCommas } from '../../utils/helpers';
+import dayjs from 'dayjs';
 import PrintButton from '../Print';
-const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
+const Debit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
-      <td>{details}</td>
-      <td>{code}</td>
+      <td>{details === 'Cash' ? 'Balance b/d' : details}</td>
+      {/* <td>{code}</td> */}
       <td className="center">{numberWithCommas(amount)}</td>
+      <td className="center"></td>
+      <td className="center"></td>
       <td className="center"></td>
     </tr>
   );
 };
-const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
+const Credit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
+      <td className="center"></td>
+      <td className="center"></td>
+      <td className="center"></td>
       <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
       <td>{details}</td>
-      <td>{code}</td>
-      <td className="center"></td>
       <td className="center">{numberWithCommas(amount)}</td>
+      {/* <td>{code}</td> */}
     </tr>
   );
 };
-const Journal: FC<{ props: CompanyProps }> = ({ props }) => {
+const Expense: FC<{ props: CompanyProps }> = ({ props }) => {
   const { email, location, name } = props;
-  const { transactions } = useTypedSelector((state) => state.journal);
-  let totalCredit = 0;
+  const { expenses } = useTypedSelector((state) => state.expenses);
+
   let totalDebit = 0;
+  let totalCredit = 0;
   const componentRef = useRef(null);
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
       <div className="card-panel" ref={componentRef}>
         <AccoutTop
-          account="General Journal"
+          account="Expenses Acount"
           name={name}
           email={email}
           location={location}
         />
+        <TableHead>
+          <div>Dr</div>
+          <div>Cr</div>
+        </TableHead>
         <table className="black-text striped">
           <thead>
             <tr>
               <th>Date</th>
               <th>Details</th>
-              <th>Ref</th>
-              <th className="center">Debit (USD)</th>
-              <th className="center">Credit (USD)</th>
+              <th className="center">Amount (USD)</th>
+              <th>Date</th>
+              <th>Details</th>
+              <th className="center">Amount (USD)</th>
             </tr>
           </thead>
           <tbody>
-            {transactions.map((t) => {
+            {expenses.map((t) => {
               t.type === 'dr'
                 ? (totalDebit += t.amount)
                 : (totalCredit += t.amount);
@@ -77,20 +88,36 @@ const Journal: FC<{ props: CompanyProps }> = ({ props }) => {
                 />
               );
             })}
-
-            {/* <tr>
-              <td>
-                <b>TOTAL</b>
+            <tr>
+              <td></td>
+              <td> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Balance c/d</td>
+              <td> </td>
+              <td className="center">
+                {numberWithCommas(totalDebit - totalCredit)}
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>TOTAL</td>
+              <td> </td>
+              <td className="center underline">
+                <b>{numberWithCommas(totalDebit)}</b>
               </td>
               <td></td>
               <td></td>
               <td className="center underline">
                 <b>{numberWithCommas(totalDebit)}</b>
               </td>
-              <td className="center underline">
-                <b>{numberWithCommas(totalCredit)}</b>
-              </td>
-            </tr> */}
+            </tr>
           </tbody>
         </table>
       </div>
@@ -99,4 +126,4 @@ const Journal: FC<{ props: CompanyProps }> = ({ props }) => {
   );
 };
 
-export default Journal;
+export default Expense;

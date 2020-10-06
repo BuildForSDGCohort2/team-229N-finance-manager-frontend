@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import rootReducer from './rootReducer';
-import hardSet from 'redux-persist/es/stateReconciler/hardSet';
-import { useDispatch } from 'react-redux';
+// import hardSet from 'redux-persist/es/stateReconciler/hardSet';
+// import { useDispatch } from 'react-redux';
 import localforage from 'localforage';
 // import thunk from 'redux-thunk';
 
@@ -31,7 +31,7 @@ const persistedReducer = persistReducer(
   {
     key: 'main',
     storage: localforage,
-    stateReconciler: hardSet,
+    // stateReconciler: hardSet,
     timeout: 20000,
     debug: true,
   },

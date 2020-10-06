@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from 'axios';
 import M from 'materialize-css';
 import Side from './Side';
@@ -16,12 +11,11 @@ import { CompanyProps } from './interface';
 import { SERVER_URL } from '../utils/constants';
 import Ovary from '../welcome/Ovary';
 import { axiosResponse } from '../welcome/interface';
-import { actionTypes } from '../../redux/actions';
+import { useCustomDispatch } from '../utils/hooks';
 interface Props {
   params: { name: string; id: string };
 }
 const Company = () => {
-  const dispatch = useThunkDispatch();
   const {
     params: { id },
   } = useRouteMatch() as Props;
@@ -34,6 +28,19 @@ const Company = () => {
       document.body.classList.remove('main_wrapper');
     };
   }, []);
+  const {
+    getBank,
+    getCapital,
+    getCash,
+    getJournal,
+    getLand,
+    getMachine,
+    getVehicle,
+    getStock,
+    getCashBook,
+    getSales,
+    getExpenses,
+  } = useCustomDispatch();
   const [showOvary, setShowOvary] = useState(false);
   const { loggedIn, token } = useTypedSelector((state) => state.auth);
   axios.defaults.headers.common['Authorization'] = token;
@@ -57,61 +64,7 @@ const Company = () => {
     companyName = name;
     compId = _id;
   }
-  const getCapital = useCallback(
-    async (data) => {
-      dispatch({
-        type: actionTypes.GET_CAPITAL,
-        payload: {
-          data,
-        },
-      });
-    },
-    [dispatch]
-  );
-  const getBank = useCallback(
-    async (data) => {
-      dispatch({
-        type: actionTypes.GET_BANK,
-        payload: {
-          data,
-        },
-      });
-    },
-    [dispatch]
-  );
-  const getCash = useCallback(
-    async (data) => {
-      dispatch({
-        type: actionTypes.GET_CASH,
-        payload: {
-          data,
-        },
-      });
-    },
-    [dispatch]
-  );
-  const getJournal = useCallback(
-    async (data) => {
-      dispatch({
-        type: actionTypes.GET_JOURNAL,
-        payload: {
-          data,
-        },
-      });
-    },
-    [dispatch]
-  );
-  const getAsset = useCallback(
-    async (data) => {
-      dispatch({
-        type: actionTypes.GET_ASSET,
-        payload: {
-          data,
-        },
-      });
-    },
-    [dispatch]
-  );
+
   const getInitialData = async () => {
     // alert('yess');
     const id = compId;
@@ -138,7 +91,13 @@ const Company = () => {
         await getCapital(res.data.data.capital);
         await getCash(res.data.data.cash);
         await getJournal(res.data.data.journal);
-        await getAsset(res.data.data.assets);
+        await getLand(res.data.data.land);
+        await getMachine(res.data.data.machine);
+        await getVehicle(res.data.data.vehicle);
+        await getStock(res.data.data.stock);
+        await getCashBook(res.data.data.cashbook);
+        await getSales(res.data.data.sales);
+        await getExpenses(res.data.data.expenses);
         // }
 
         // M.toast({ html: info, classes: 'rounded green' });

@@ -116,6 +116,7 @@ const Login = () => {
       <Header isHome={false} />
       <Ovary showOvary={showOvary} />
       <FormWraper
+        data-testid="login-page"
         initial={{ scale: 0 }}
         animate={{ scale: 1, transition: { duration: 0.1, transition } }}>
         <Locker lockShow={lockShow} />
@@ -168,7 +169,10 @@ const Login = () => {
           </FormActions>
         </FormTop>
         <FormBottom>
-          <button className="waves-effect waves-light" onClick={submit}>
+          <button
+            data-testid="login-button"
+            className="waves-effect waves-light"
+            onClick={submit}>
             log in
           </button>
           <p style={LinkStyles.p}>

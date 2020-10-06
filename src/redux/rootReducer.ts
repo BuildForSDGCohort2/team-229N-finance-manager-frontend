@@ -8,11 +8,13 @@ import transactionReducer from './reducers/journal';
 import cashReducer from './reducers/cash';
 import bankReducer from './reducers/bank';
 import capitalReducer from './reducers/capital';
-import assetReducer from './reducers/asset';
+import landReducer from './reducers/land';
 import salesReducer from './reducers/sales';
 import expenseReducer from './reducers/expenses';
-import purchaseReducer from './reducers/purchase.';
+import stockReducer from './reducers/stock';
 import cashbookReducer from './reducers/cashbook';
+import machineReducer from './reducers/machine';
+import vehicleReducer from './reducers/vehicle';
 
 const appReducer = combineReducers({
   routes: routeReducer,
@@ -22,11 +24,13 @@ const appReducer = combineReducers({
   cash: cashReducer,
   bank: bankReducer,
   capital: capitalReducer,
-  asset: assetReducer,
+  land: landReducer,
   sales: salesReducer,
   expenses: expenseReducer,
-  purchase: purchaseReducer,
+  stock: stockReducer,
   cashbook: cashbookReducer,
+  machine: machineReducer,
+  vehicle: vehicleReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

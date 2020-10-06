@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { TableHead } from '../comps';
 import M from 'materialize-css';
 import axios from 'axios';
@@ -12,6 +12,7 @@ import Ovary from '../../welcome/Ovary';
 import { SERVER_URL } from '../../utils/constants';
 import { actionTypes } from '../../../redux/actions';
 import { axiosResponse } from '../../welcome/interface';
+import PrintButton from '../Print';
 const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
   return (
     <tr>
@@ -38,57 +39,17 @@ const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
     </tr>
   );
 };
-const Bank: FC<{ props: any }> = ({ props }) => {
-  const { email, location, name, _id } = props as CompanyProps;
+const Bank: FC<{ props: CompanyProps }> = ({ props }) => {
+  const { email, location, name, _id } = props;
   const { bank } = useTypedSelector((state) => state.bank);
-  // const [showOvary, setShowOvary] = useState(false);
-  // const dispatch = useThunkDispatch();
-  // const openOvary = () => {
-  //   setShowOvary(true);
-  // };
-  // const closeOvary = () => {
-  //   setShowOvary(false);
-  // };
 
-  // const getBank = async () => {
-  //   // alert('yess');
-  //   const id = _id;
-  //   if (!id) {
-  //     return;
-  //   }
-  //   openOvary();
-  //   // console.log('companyId', compId);
-  //   try {
-  //     const res = await axios.get(`${SERVER_URL}/transaction/getbank/${id}`);
-  //     // console.log('response', res.data);
-  //     closeOvary();
-  //     const { success, error } = res.data as axiosResponse;
-  //     if (!success) {
-  //       M.toast({ html: error, classes: 'rounded red' });
-  //       // setInvalid(true);
-  //     } else {
-  //       if (res.data.data.length > 0) {
-  //         dispatch({
-  //           type: actionTypes.GET_BANK,
-  //           payload: {
-  //             data: res.data.data,
-  //           },
-  //         });
-  //       }
-
-  //       // M.toast({ html: info, classes: 'rounded green' });
-  //     }
-  //   } catch (error) {
-  //     closeOvary();
-  //   }
-  // };
-  // const bankBal = bank.filter((c) => c.details === 'Bank');
   let totalDebit = 0;
   let totalCredit = 0;
+  const componentRef = useRef(null);
   return (
     <>
       {/* <Ovary showOvary={showOvary} /> */}
-      <div className="card-panel">
+      <div className="card-panel" ref={componentRef}>
         <AccoutTop
           account="Bank Acount"
           name={name}
@@ -169,6 +130,7 @@ const Bank: FC<{ props: any }> = ({ props }) => {
           </tbody>
         </table>
       </div>
+      <PrintButton componentRef={componentRef} />
     </>
   );
 };

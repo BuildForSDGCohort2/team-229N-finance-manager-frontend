@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match snapshot 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    className="sc-bdnylx ljIfqC"
+    style={
+      Object {
+        "transform": "translateX(-100%) translateZ(0)",
+      }
+    }
+  >
+    <img
+      alt="logo"
+      height="50"
+      src="logo.png"
+      width="50"
+    />
+    <h1
+      className="sc-gtssRu bOlzZj textShadow"
+      onClick={[Function]}
+    >
+      Finance manager
+    </h1>
+  </div>
+  <br />
+   
+  <br />
+  <br />
+  <div
+    className="sc-bqGHjH jGydKB"
+    display="none"
+  >
+    <div />
+    <div>
+      PLEASE WAIT....
+    </div>
+  </div>
+  <div
+    className="sc-eCApGN ebiGih"
+    data-testid="login-page"
+    style={
+      Object {
+        "transform": "scale(0) translateZ(0)",
+      }
+    }
+  >
+    <div
+      className="sc-dIsAE gCrKYv"
+    >
+      <span
+        className="material-icons red-text"
+      >
+        lock
+      </span>
+    </div>
+    <div
+      className="sc-dIsAE gCrKYv"
+    >
+      <span
+        className="material-icons green-text"
+      >
+        lock_open
+      </span>
+    </div>
+    <p
+      className="sc-gKAblj iYdIAp"
+    >
+      Log In
+    </p>
+    <div
+      className="sc-iCoHVE jrMNGk"
+      style={Object {}}
+    >
+      <div
+        className="input-field col s12 field"
+      >
+        <i
+          className="material-icons tiny white-text prefix"
+        >
+          email
+        </i>
+        <input
+          className="validate white-text input_border"
+          id="em"
+          onChange={[Function]}
+          type="email"
+          value=""
+        />
+        <span
+          className="sc-crzoUp cSFnPS"
+        />
+        <label
+          htmlFor="em"
+        >
+          Email
+        </label>
+      </div>
+      <div
+        className="input-field col s12 field"
+      >
+        <i
+          className="tiny material-icons white-text prefix"
+        >
+          lock
+        </i>
+        <input
+          className="white-text input_border"
+          id="pas"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+        <span
+          className="sc-crzoUp cSFnPS"
+        />
+        <label
+          htmlFor="pas"
+        >
+          Password
+        </label>
+      </div>
+      <div
+        className="sc-fujyUd dmnufE"
+      >
+        <ul>
+          <li>
+            <label>
+              <input
+                checked={true}
+                className="filled-in"
+                name="rememberMe"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <span>
+                Remember me
+              </span>
+            </label>
+          </li>
+        </ul>
+        <div
+          className="clear"
+        >
+           
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-pNWxx fpLEO"
+    >
+      <button
+        className="waves-effect waves-light"
+        data-testid="login-button"
+        onClick={[Function]}
+      >
+        log in
+      </button>
+      <p
+        style={
+          Object {
+            "fontSize": "1.4rem",
+          }
+        }
+      >
+        Don't have an account?
+        <a
+          href="/register"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "orange",
+              "fontWeight": 700,
+              "margin": "1rem",
+            }
+          }
+        >
+          Register
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;
