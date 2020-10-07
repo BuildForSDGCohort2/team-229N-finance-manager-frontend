@@ -1,19 +1,13 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef } from 'react';
 import { TableHead } from '../comps';
-import M from 'materialize-css';
-import axios from 'axios';
 import AccoutTop from '../AccoutTop';
 import { CompanyProps } from '../interface';
 import dayjs from 'dayjs';
 import { numberWithCommas } from '../../utils/helpers';
 import { DataArray } from '../../../redux/interface';
-import { useThunkDispatch, useTypedSelector } from '../../../redux/stateTypes';
-import Ovary from '../../welcome/Ovary';
-import { SERVER_URL } from '../../utils/constants';
-import { actionTypes } from '../../../redux/actions';
-import { axiosResponse } from '../../welcome/interface';
+import { useTypedSelector } from '../../../redux/stateTypes';
 import PrintButton from '../Print';
-const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
+const Debit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td>{dayjs(pd).format('DD/MM/YYYY')}</td>
@@ -26,7 +20,7 @@ const Debit: FC<DataArray> = ({ amount, details, code, pd }) => {
     </tr>
   );
 };
-const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
+const Credit: FC<DataArray> = ({ amount, details, pd }) => {
   return (
     <tr>
       <td className="center"></td>
@@ -40,7 +34,7 @@ const Credit: FC<DataArray> = ({ amount, details, pd, code }) => {
   );
 };
 const Bank: FC<{ props: CompanyProps }> = ({ props }) => {
-  const { email, location, name, _id } = props;
+  const { email, location, name } = props;
   const { bank } = useTypedSelector((state) => state.bank);
 
   let totalDebit = 0;

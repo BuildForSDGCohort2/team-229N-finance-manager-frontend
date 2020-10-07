@@ -8,6 +8,7 @@
   outline: none;
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
   color: $texColor;
@@ -30,6 +31,7 @@ ul {
   background-color: orange;
   border-radius: 10px;
 }
+
 @font-face {
   font-family: 'Abel-Regular';
   src: url(../fonts/Abel-Regular.ttf);
@@ -48,6 +50,7 @@ ul {
     url('../fonts/MaterialIcons-Regular.woff') format('woff'),
     url('../fonts/MaterialIcons-Regular.ttf') format('truetype');
 }
+
 body {
   width: 100%;
   overflow-x: hidden;
@@ -85,33 +88,40 @@ body {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
 .activeScroll {
   color: orange !important;
   text-decoration: underline;
 }
+
 .hover_me {
   transition: all 0.5s linear;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #f0f8ff;
 }
+
 .shadow {
   transition: all 0.5s linear;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
+
 .textShadow {
   text-shadow: 7px 6px 12px #02a299;
 }
+
 .main_margin {
   margin-top: 0.8rem;
   // padding-left: 2rem !important;
   // padding-top: 2rem !important;
   background-color: #f0f8ff;
 }
+
 .side {
   height: 100vh;
   position: static;
   left: 0;
 }
+
 .main_wrapper {
   color: $texColor;
   background-image: url('../asset/bg.jpg');
@@ -121,15 +131,19 @@ body {
   background-attachment: fixed;
   overflow-x: hidden;
 }
+
 .side_margin {
   margin-top: 0.3rem;
 }
+
 .transparent {
   background-color: transparent !important;
 }
+
 .collapsible_overide {
   padding: 0 !important;
 }
+
 .collection_item_overide {
   padding: 0 !important;
   cursor: pointer;
@@ -145,6 +159,7 @@ th {
   // padding: 0;
   border: 1px solid #ddd !important;
 }
+
 @media all {
   .page-break {
     display: none;

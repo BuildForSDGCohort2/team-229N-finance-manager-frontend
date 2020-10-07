@@ -1,10 +1,12 @@
 h1 {
   font-size: 40px;
 }
+
 p {
   font-size: 1.15rem;
   line-height: 1.7;
 }
+
 .button {
   display: inline-block;
   border: 0;
@@ -17,6 +19,7 @@ p {
   margin-top: 10px;
   transition: all 0.5s linear;
   cursor: pointer;
+
   &:hover {
     transform: scale(1.18);
   }
@@ -69,6 +72,7 @@ p {
   // background-color: red;
   // margin-bottom: 0 !important;
 }
+
 .auth_bg {
   color: $texColor;
   background-image: url('../asset/bg.jpg');

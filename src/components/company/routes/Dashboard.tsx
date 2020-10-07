@@ -1,5 +1,5 @@
 import React from 'react';
-import { Doughnut, Pie, Line, Bar } from 'react-chartjs-2';
+import { Doughnut, Pie, Line } from 'react-chartjs-2';
 import { useData } from '../../utils/data';
 const Dashboard = () => {
   const { pieData, donutdDta, lineData } = useData();

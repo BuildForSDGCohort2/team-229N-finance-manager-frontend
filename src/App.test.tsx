@@ -4,7 +4,7 @@ import App from './App';
 import ReactDOM from 'react-dom';
 afterEach(cleanup);
 test('test splash screen', async () => {
-  const { getByText, debug } = await render(<App />);
+  const { getByText } = await render(<App />);
   const linkElement = getByText(/loading/);
   expect(linkElement).toBeInTheDocument();
   // debug();

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/welcome/Home';
 import Login from './components/welcome/Login';
-import { AnimatePresence } from 'framer-motion';
 import Register from './components/welcome/Register';
 import CreateCompany from './components/company/CreateCompany';
 import Company from './components/company/Company';

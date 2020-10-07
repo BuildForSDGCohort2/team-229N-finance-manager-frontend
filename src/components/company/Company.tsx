@@ -27,7 +27,7 @@ const Company = () => {
       // Called just before the component unmount
       document.body.classList.remove('main_wrapper');
     };
-  }, []);
+  }, [id]);
   const {
     getBank,
     getCapital,
@@ -55,7 +55,7 @@ const Company = () => {
   };
   useEffect(() => {
     getInitialData();
-  }, []);
+  }, [id]);
 
   let companyName: string = '';
   let compId: string = '';
