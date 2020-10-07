@@ -20,7 +20,14 @@ const Container = styled(motion.div)`
   background-image: url('../asset/bg2.jpg');
   background-repeat: no-repeat; */
 `;
-
+const Img = styled.img`
+  width: 50px;
+  height: 50px;
+  @media only screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
 const H1 = styled.h1`
   font-family: 'BlackOpsOne-Regular';
   font-size: 30px;
@@ -30,6 +37,9 @@ const H1 = styled.h1`
   text-align: left;
   align-self: center;
   margin-left: 1.5rem;
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 const Links = styled.ul`
   display: flex;
@@ -46,6 +56,9 @@ const Links = styled.ul`
     }
     font-size: 22px;
     margin: 0 20px;
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 const Header: FC<{ isHome: boolean }> = ({ isHome }) => {
@@ -61,7 +74,7 @@ const Header: FC<{ isHome: boolean }> = ({ isHome }) => {
   return (
     <>
       <Container initial={{ x: '-100%' }} animate={{ x: 0 }}>
-        <img src={logo} width="50" height="50" alt="logo" />
+        <Img src={logo} alt="logo" />
         <H1 className="textShadow" onClick={scrollToTop}>
           Finance manager
         </H1>

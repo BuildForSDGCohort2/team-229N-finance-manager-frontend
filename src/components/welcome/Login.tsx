@@ -150,16 +150,17 @@ const Login = () => {
           <FormActions>
             <ul>
               <li>
-                <label>
+                <p>
                   <input
                     type="checkbox"
                     name="rememberMe"
                     checked={rememberMe}
                     onChange={handleInputChange}
                     className="filled-in"
+                    id="filled-in-box"
                   />
-                  <span>Remember me</span>
-                </label>
+                  <label htmlFor="filled-in-box">Remember me</label>
+                </p>
               </li>
               {/* <li>
                 <Link >Forgot password?</Link>
