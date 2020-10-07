@@ -14,12 +14,11 @@ exports[`Login should match snapshot 1`] = `
   >
     <img
       alt="logo"
-      height="50"
+      className="sc-gtssRu exgArr"
       src="logo.png"
-      width="50"
     />
     <h1
-      className="sc-gtssRu bOlzZj textShadow"
+      className="sc-dlnjPT bSgjMl textShadow"
       onClick={[Function]}
     >
       Finance manager
@@ -30,7 +29,7 @@ exports[`Login should match snapshot 1`] = `
   <br />
   <br />
   <div
-    className="sc-bqGHjH jGydKB"
+    className="sc-ksluoS izYvKy"
     display="none"
   >
     <div />
@@ -39,7 +38,7 @@ exports[`Login should match snapshot 1`] = `
     </div>
   </div>
   <div
-    className="sc-eCApGN ebiGih"
+    className="sc-jSFkmK fQIlKl"
     data-testid="login-page"
     style={
       Object {
@@ -48,7 +47,7 @@ exports[`Login should match snapshot 1`] = `
     }
   >
     <div
-      className="sc-dIsAE gCrKYv"
+      className="sc-bqGHjH HiOXf"
     >
       <span
         className="material-icons red-text"
@@ -57,7 +56,7 @@ exports[`Login should match snapshot 1`] = `
       </span>
     </div>
     <div
-      className="sc-dIsAE gCrKYv"
+      className="sc-bqGHjH HiOXf"
     >
       <span
         className="material-icons green-text"
@@ -66,12 +65,12 @@ exports[`Login should match snapshot 1`] = `
       </span>
     </div>
     <p
-      className="sc-gKAblj iYdIAp"
+      className="sc-iCoHVE YmbOq"
     >
       Log In
     </p>
     <div
-      className="sc-iCoHVE jrMNGk"
+      className="sc-fujyUd iJfgZz"
       style={Object {}}
     >
       <div
@@ -90,7 +89,7 @@ exports[`Login should match snapshot 1`] = `
           value=""
         />
         <span
-          className="sc-crzoUp cSFnPS"
+          className="sc-dIsAE dBuwMZ"
         />
         <label
           htmlFor="em"
@@ -114,7 +113,7 @@ exports[`Login should match snapshot 1`] = `
           value=""
         />
         <span
-          className="sc-crzoUp cSFnPS"
+          className="sc-dIsAE dBuwMZ"
         />
         <label
           htmlFor="pas"
@@ -123,22 +122,25 @@ exports[`Login should match snapshot 1`] = `
         </label>
       </div>
       <div
-        className="sc-fujyUd dmnufE"
+        className="sc-pNWxx hoDLQI"
       >
         <ul>
           <li>
-            <label>
+            <p>
               <input
                 checked={true}
                 className="filled-in"
+                id="filled-in-box"
                 name="rememberMe"
                 onChange={[Function]}
                 type="checkbox"
               />
-              <span>
+              <label
+                htmlFor="filled-in-box"
+              >
                 Remember me
-              </span>
-            </label>
+              </label>
+            </p>
           </li>
         </ul>
         <div
@@ -149,7 +151,7 @@ exports[`Login should match snapshot 1`] = `
       </div>
     </div>
     <div
-      className="sc-pNWxx fpLEO"
+      className="sc-jrsJCI kosLyc"
     >
       <button
         className="waves-effect waves-light"
