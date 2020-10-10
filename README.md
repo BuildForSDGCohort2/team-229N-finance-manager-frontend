@@ -10,7 +10,7 @@
 
 ### Dashboard preview
 
-![Finace manager](https://prnt.sc/uwp8sk)
+![Dashboard preview](img/dash.png)
 
 ## Technology stack
 
