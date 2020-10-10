@@ -8,6 +8,10 @@
 
 > This software also aims to minimise the complexity of book keeping by providing automated generation of financial statements like business journals, ledgers, Trial balance, Income statement, cashbooks, and balance sheet basing on data of the company provided through our easy to use user interface.
 
+### Dashboard preview
+
+![Finace manager](https://prnt.sc/uwp8sk)
+
 ## Technology stack
 
 - Typescript
