@@ -1,6 +1,6 @@
 # Finance manager
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe7b07987f4c43e39f434c7fdf67d22c)](https://app.codacy.com/gh/BuildForSDGCohort2/Team-229N-finance-manager-frontend?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDGCohort2/Team-229N-finance-manager-frontend&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe7b07987f4c43e39f434c7fdf67d22c)](https://app.codacy.com/gh/BuildForSDGCohort2/Team-229N-finance-manager-frontend?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDGCohort2/Team-229N-finance-manager-frontend&utm_campaign=Badge_Grade_Settings)[![Actions Status](https://github.com/BuildForSDGCohort2/team-229N-finance-manager-frontend/workflows/Build%20and%20Test/badge.svg)](https://github.com/BuildForSDGCohort2/team-229N-finance-manager-frontend/actions)
 
 ![Finace manager](src/asset/finance.svg)
 
