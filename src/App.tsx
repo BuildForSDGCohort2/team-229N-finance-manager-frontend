@@ -13,11 +13,11 @@ import axios from 'axios';
 import { SERVER_URL } from './components/utils/constants';
 import Confirm from './components/welcome/Confirm';
 axios.defaults.baseURL = SERVER_URL;
-axios.defaults.withCredentials = false;
-axios.defaults.headers = {
-    'Access-Control-Allow-Origin' : '*',
-    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    };
+// axios.defaults.withCredentials = false;
+// axios.defaults.headers = {
+//     'Access-Control-Allow-Origin' : '*',
+//     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+//     };
 const App: FC = () => {
   return (
     <Provider store={store}>
