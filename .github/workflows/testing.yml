@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: install dependences
-        run: npm install
-      - name: Run tests
-        run: npm test
+        run: yarn
+#       - name: Run tests
+#         run: npm test
