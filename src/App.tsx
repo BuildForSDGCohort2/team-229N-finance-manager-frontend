@@ -14,7 +14,7 @@ import { SERVER_URL } from './components/utils/constants';
 import Confirm from './components/welcome/Confirm';
 axios.defaults.baseURL = SERVER_URL;
 // axios.withCredentials = false;
-axios.headers = {
+axios.defaults.headers = {
     'Access-Control-Allow-Origin' : '*',
     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
     };
